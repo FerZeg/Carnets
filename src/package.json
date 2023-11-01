@@ -1,0 +1,21 @@
+{
+  "name": "carnet",
+  "module": "index.js",
+  "devDependencies": {
+    "bun-types": "latest",
+    "eslint": "^8.52.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "dev": "bun --watch run index.js",
+    "node": "node --env-file=.env --watch index.js"
+  },
+  "type": "module",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carnets</title>
+    <style>
+        #carnets {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        #carnets > div {
+            max-width: 60%;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            border: 1px solid black;
+        }
+        #carnets > div img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="enlace"></div>
+    <div id="carnets"></div>
+    <script>
+        const user = localStorage.getItem('user')
+        const enlace = document.getElementById('enlace')
+        if(!user) {
+            enlace.innerHTML = `<a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=l2bb03j7i3rwqvfys6nwm4f21uqyze&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fregister&scope=user%3Aread%3Afollows+user%3Aread%3Asubscriptions+channel%3Aread%3Aredemptions+channel%3Amanage%3Aredemptions+channel%3Aread%3Asubscriptions+channel%3Aread%3Avips+moderator%3Aread%3Afollowers"><button>Conectar con twitch</button></a>`
+        }
+        (async() => {
+            const res = await fetch(`http://localhost:3000/api/auth/data`)
+            console.log(user)
+            if(!res.ok && user) {
+                localStorage.removeItem('user')
+                return location.reload()
+            } 
+            const json = await res.json()
+            localStorage.setItem('user', JSON.stringify(res))
+            const carnets = await fetch(`http://localhost:3000/api/carnet`)
+            const carnetsJson = await carnets.json()
+            const carnetsDiv = document.getElementById('carnets')
+            carnetsJson.forEach(carnet => {
+                carnetsDiv.innerHTML += `<div><h1>${carnet.streamer.name}</h1><img src="${carnet.streamer.profile_url}"></div>`
+            })
+        })()
+    </script>
+</body>
+</html>

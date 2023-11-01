@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    table {
+        border-collapse: collapse;
+        margin: 10px;
+    }
+    th, td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid #ddd;
+    }
+    </style>
+</head>
+<body>
+    <h3>Errors</h3>
+    <script>
+        const createErrorTable = (errors) => {
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
+            const headerRow = document.createElement("tr");
+            const codeHeader = document.createElement("th");
+            const messageHeader = document.createElement("th");
+
+            codeHeader.innerText = "Code";
+            messageHeader.innerText = "Message";
+
+            headerRow.appendChild(codeHeader);
+            headerRow.appendChild(messageHeader);
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            errors.forEach((error) => {
+                const row = document.createElement("tr");
+                const codeCell = document.createElement("td");
+                const messageCell = document.createElement("td");
+
+                codeCell.innerText = error.code;
+                messageCell.innerText = error.message;
+
+                row.appendChild(codeCell);
+                row.appendChild(messageCell);
+                tbody.appendChild(row);
+            });
+
+            table.appendChild(tbody);
+            return table;
+        };
+
+        const createCarnetTable = (carnets) => {
+            const table = document.createElement("table");
+            const thead = document.createElement("thead");
+            const tbody = document.createElement("tbody");
+            const headerRow = document.createElement("tr");
+            const urlHeader = document.createElement("th");
+            const methodHeader = document.createElement("th");
+            const descriptionHeader = document.createElement("th");
+            const requirementsHeader = document.createElement("th");
+
+            urlHeader.innerText = "URL";
+            methodHeader.innerText = "Method";
+            descriptionHeader.innerText = "Description";
+            requirementsHeader.innerText = "Requirements";
+
+            headerRow.appendChild(urlHeader);
+            headerRow.appendChild(methodHeader);
+            headerRow.appendChild(descriptionHeader);
+            headerRow.appendChild(requirementsHeader);
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+
+            carnets.forEach((carnet) => {
+                const row = document.createElement("tr");
+                const urlCell = document.createElement("td");
+                const methodCell = document.createElement("td");
+                const descriptionCell = document.createElement("td");
+                const requirementsCell = document.createElement("td");
+
+                urlCell.innerText = carnet.url;
+                methodCell.innerText = carnet.method;
+                descriptionCell.innerText = carnet.description;
+                requirementsCell.innerText = carnet.requirements;
+
+                row.appendChild(urlCell);
+                row.appendChild(methodCell);
+                row.appendChild(descriptionCell);
+                row.appendChild(requirementsCell);
+                tbody.appendChild(row);
+
+            });
+
+            table.appendChild(tbody);
+            return table;
+        };
+        const OAuth = [
+            { url: "/api/twitch/callback", method: "GET", description: "Twitch OAuth callback", requirements: "" }
+        ]
+        const errors = [
+            { code: 400, message: "Bad request" },
+            { code: 401, message: "Unauthorized" },
+            { code: 404, message: "Not found" },
+            { code: 500, message: "Internal server error" },
+        ];
+
+        const carnet = [
+            { url: "/api/carnet", method: "GET", description: "Get all carnets from the user", requirements: "valid JWT"},
+            { url: "/api/carnet", method: "POST", description: "Create a new carnet", requirements: "valid JWT"},
+            { url: "/api/carnet/:username", method: "GET", description: "Get a carnet by username" },
+        ];
+        const ranking = [
+            { url: "/api/:streamer/ranking", method: "GET", description: "Get the streamer ranking", requirements: "No requirements"},
+        ]
+        const streamer = [
+            { url: "/api/streamer", method: "GET", description: "Get all streamer", requirements: "Query: number, offset"},
+            { url: "/api/streamer/upgrade", method: "POST", description: "Upgrade to Streamer", requirements: "valid JWT"},
+            { url: "/api/streamer/downgrade", method: "POST", description: "Downgrade to User", requirements: "valid JWT"}
+        ]
+
+        const errorTable = createErrorTable(errors);
+        const carnetTable = createCarnetTable(carnet);
+        const rankingTable = createCarnetTable(ranking);
+        const OAuthTable = createCarnetTable(OAuth);
+        const streamerTable = createCarnetTable(streamer);
+        document.body.appendChild(errorTable);
+        document.body.appendChild(rankingTable);
+        document.body.appendChild(carnetTable);
+        document.body.appendChild(OAuthTable);
+        document.body.appendChild(streamerTable);
+    </script>
+</body>
+</html>
