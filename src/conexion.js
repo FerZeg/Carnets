@@ -9,15 +9,6 @@ async function connect() {
 		console.log("Error conectando a la base de datos", error)
 	}
 }
-client.on("connectionCreated", () => {
-	console.log("Conexión creada")
-})
-client.on("connectionReady", () => {
-	console.log("Conexión lista")
-})
-client.on("connectionClosed", () => {
-	console.log("Conexión cerrada")
-})
 client.on("connectionFailed", () => {
 	console.log("Conexión fallida")
 })
@@ -31,7 +22,4 @@ client.on("connectionLost", () => {
 	console.log("Conexión perdida")
 })
 
-client.on("connectionPoolCleared", () => {
-	console.log("Conexión pool limpiada")
-})
 export {connect, db}
