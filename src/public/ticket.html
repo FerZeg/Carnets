@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/atropos.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            height: 100vh;
+            width: 100%;
+        }
+        #carnet {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #ticket {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+        }
+        .my-atropos {
+            width: 600px;
+            height: 400px;
+        }
+        #ticket {
+            background-color: aquamarine;
+            border: 10px solid black;
+            border-radius: 1rem;
+            padding: 10px;
+            position: relative;
+        }
+        p {
+            overflow: hidden;
+        }
+        #pattern {
+            color: #9c92ac69;
+        }
+        svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        svg path{
+            fill: #9c92ac69;
+            fill-opacity: 0.3;
+        }
+    </style>
+    <script src="/static/atroposlib.js" defer type="module"></script>
+</head>
+<body>
+    <div id="carnet">
+        <div class="atropos my-atropos">
+            <!-- scale container (required) -->
+            <div class="atropos-scale">
+              <!-- rotate container (required) -->
+              <div class="atropos-rotate">
+                <!-- inner container (required) -->
+                <div class="atropos-inner">
+                  <div id="ticket">
+                    <svg xmlns="http://www.w3.org/2000/svg" id="pattern" viewBox="0 0 120 120">
+                        <path d="M9 0h2v20H9V0zm25.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm-20 20l1.732 1-10 17.32-1.732-1 10-17.32zM58.16 4.134l1 1.732-17.32 10-1-1.732 17.32-10zm-40 40l1 1.732-17.32 10-1-1.732 17.32-10zM80 9v2H60V9h20zM20 69v2H0v-2h20zm79.32-55l-1 1.732-17.32-10L82 4l17.32 10zm-80 80l-1 1.732-17.32-10L2 84l17.32 10zm96.546-75.84l-1.732 1-10-17.32 1.732-1 10 17.32zm-100 100l-1.732 1-10-17.32 1.732-1 10 17.32zM38.16 24.134l1 1.732-17.32 10-1-1.732 17.32-10zM60 29v2H40v-2h20zm19.32 5l-1 1.732-17.32-10L62 24l17.32 10zm16.546 4.16l-1.732 1-10-17.32 1.732-1 10 17.32zM111 40h-2V20h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zM40 49v2H20v-2h20zm19.32 5l-1 1.732-17.32-10L42 44l17.32 10zm16.546 4.16l-1.732 1-10-17.32 1.732-1 10 17.32zM91 60h-2V40h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm24.026 3.294l1 1.732-17.32 10-1-1.732 17.32-10zM39.32 74l-1 1.732-17.32-10L22 64l17.32 10zm16.546 4.16l-1.732 1-10-17.32 1.732-1 10 17.32zM71 80h-2V60h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm24.026 3.294l1 1.732-17.32 10-1-1.732 17.32-10zM120 89v2h-20v-2h20zm-84.134 9.16l-1.732 1-10-17.32 1.732-1 10 17.32zM51 100h-2V80h2v20zm3.134.84l1.732 1-10 17.32-1.732-1 10-17.32zm24.026 3.294l1 1.732-17.32 10-1-1.732 17.32-10zM100 109v2H80v-2h20zm19.32 5l-1 1.732-17.32-10 1-1.732 17.32 10zM31 120h-2v-20h2v20z" fill="#9C92AC" fill-opacity="0.4" fill-rule="evenodd"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <script>
+        (async () => {
+            const atroposdiv = document.getElementById('ticket')
+            const response = await fetch('/api/carnet/newpredatorrrrrr')
+            if(!response.ok) return console.log(response)
+            const ticketJson = await response.json()
+            const color = ticketJson.carnet.color
+            const userName = ticketJson.user.display_name
+            const pic = ticketJson.user.profile_image_url
+            console.log(ticketJson)
+            atroposdiv.innerHTML = `
+                <p>Username: ${userName}</p>
+                <p>Color: ${color}</p>
+                <p>Observaciones: ${ticketJson.carnet.observations}</p>
+                <img src="${pic}" alt="" width="200px" height="200px">
+            `
+
+        })()
+    </script>
+</body>
+</html>
