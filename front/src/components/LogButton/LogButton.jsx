@@ -7,9 +7,9 @@ LogButton.propTypes = {
 
 export default function LogButton(props) {
     return (
-    <button className="button">
+    <button className="login">
         {props.children}
-        {props.text}
+        <span>{props.text}</span>
     </button>
     )
 }
