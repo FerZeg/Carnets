@@ -28,10 +28,6 @@ app.use("/api", apiRouter)
 app.use("/auth", authRouter)
 
 // eslint-disable-next-line no-unused-vars
-app.use((req,res) => {
-	res.status(404).sendFile(process.cwd() + "/Views/404.html")
-})
-// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
 	res.status(500).sendFile(process.cwd() + "/Views/500.html")
 })

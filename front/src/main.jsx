@@ -10,8 +10,8 @@ const router = createBrowserRouter(
     <>
     <Route path="/" element={<App />} >
     </Route>
-          <Route path="/about" element={<div>About</div>} />
-          <Route path="*" element={<Error404/>} />
+    <Route path="/about" element={<div>About</div>} />
+    <Route path="*" element={<Error404/>} />
     </>
   ))
 
