@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Fira+Mono:400");
 
-body {
+#Page404 {
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -13,16 +13,16 @@ body {
   font-family: "Fira Mono", monospace;
 }
 
-#home {
+#Page404 #home {
   font-size: 2vw !important;
 }
-#home a {
+#Page404 #home a {
   text-decoration: none;
   color: #e1e1e1;
   text-decoration: underline;
 }
 
-#glitch {
+#Page404 #glitch {
   animation: glitch 1s linear infinite;
 }
 
@@ -42,14 +42,14 @@ body {
   }
 }
 
-#glitch::before,
-#glitch::after {
+#Page404 #glitch::before,
+#Page404 #glitch::after {
   content: attr(title);
   position: absolute;
   left: 0;
 }
 
-#glitch::before {
+#Page404 #glitch::before {
   animation: glitchTop 1s linear infinite;
   clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
@@ -71,7 +71,7 @@ body {
   }
 }
 
-#glitch::after {
+#Page404 #glitch::after {
   animation: glitchBottom 1.5s linear infinite;
   clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
   -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
