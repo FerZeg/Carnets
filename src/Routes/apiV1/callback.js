@@ -1,10 +1,10 @@
 import { Router} from "express"
-import TwitchApi from "../Controllers/twitchapi.js"
-import User from "../Models/UserModel.js"
-import  AuthToken from "../Controllers/authtokens.js"
+import TwitchApi from "../../Controllers/twitchapi.js"
+import User from "../../Models/UserModel.js"
+import  AuthToken from "../../Controllers/authtokens.js"
 const router = Router()
 
-router.get("/register", async (req, res, next) => {
+router.get("/twitch", async (req, res, next) => {
 	const token = req.cookies.token
 	if(token) {
 		const verify = await AuthToken.verifyAuthToken(token)
