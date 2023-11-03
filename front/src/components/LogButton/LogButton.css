@@ -15,7 +15,6 @@ button.login {
     color: rgb(65, 63, 63);
     background-color: #fff;
     cursor: pointer;
-    transition: all .6s ease;
 }
 button.login svg {
     position: relative;
