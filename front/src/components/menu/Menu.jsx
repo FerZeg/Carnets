@@ -24,7 +24,6 @@ export default function AccountMenu() {
   };
   const handleLogout = () => {
     console.log("logout")
-    alert("logout")
     navigate('/logout')
   }
   const handleClose = () => {

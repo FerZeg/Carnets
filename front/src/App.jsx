@@ -45,15 +45,18 @@ function App() {
   return (
     <>
     <loginContext.Provider value={login}>
-      <div id="MenuContainer">
-        {login.value ?
-         (<Menu/>)
-         :
-         (<LogButton text="Conectar con twitch">
+        {!login.value ?
+        <div id="LoginContainer">
+          <h1>Iniciar Sesión en la App</h1>
+          <LogButton text="Conectar con twitch">
             <TwitchIcon />
-          </LogButton>)
+          </LogButton>
+        </div>
+         :
+         <div id="MenuContainer">
+          <Menu />
+          </div>
         }
-      </div>
     </loginContext.Provider>
     </>
   )
