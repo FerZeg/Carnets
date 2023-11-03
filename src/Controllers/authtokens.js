@@ -21,18 +21,24 @@ export const verifyAuthToken = (token) => {
 	})
 }
 export const verifyAuthTokenMiddleware = async (req, res, next) => {
-	const token = req.cookies.token
+	const token = extractBearerToken(req)
 	if(!token) {
-		return res.status(401).send("No se ha iniciado sesión")
+		return res.status(401).send("Error, inicie sesión nuevamente")
 	}
 	try {
 		const decoded = await verifyAuthToken(token)
 		req.user = decoded.payload
 		next()
 	} catch (error) {
-		res.clearCookie("token")
-		return res.status(401).send("Error, inicie sesión nuevamente")
+		return res.status(401).redirect("/logout")
 	}
+}
+
+export const extractBearerToken = (req) => {
+	const bearerToken = req.headers.authorization
+	if(!bearerToken) return null
+	const token = bearerToken.split(" ")[1]
+	return token
 }
 
 export default {createAuthToken, verifyAuthToken, verifyAuthTokenMiddleware}
