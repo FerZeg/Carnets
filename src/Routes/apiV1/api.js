@@ -3,12 +3,14 @@ import streamerRouter from "./streamer.js"
 import carnetRouter from "./carnet.js"
 import rankingRouter from "./ranking.js"
 import authRouter from "./auth.js"
+import callbackRouter from "./callback.js"
 import {BadRequestError, NotFoundError, UnauthorizedError} from "../../Errors.js"
 const router = Router()
 router.use("/auth", authRouter)
 router.use("/streamer", streamerRouter)
 router.use("/carnet", carnetRouter)
 router.use("/ranking", rankingRouter)
+router.use("/callback", callbackRouter)
 // eslint-disable-next-line no-unused-vars
 router.use((err, req, res, next) => {
 	if(err instanceof UnauthorizedError) {

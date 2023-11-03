@@ -2,8 +2,7 @@ import express from "express"
 import cookieParser from "cookie-parser"
 //import { rankingRouter } from './routes/ranking.js'
 import {connect} from "./conexion.js"
-import authRouter from "./Routes/auth.js"
-import apiRouter from "./Routes/api/api.js"
+import apiRouter from "./Routes/apiV1/api.js"
 const app = express()
 const PORT = process.env.PORT || 3000
 
@@ -25,7 +24,6 @@ app.get("/", (req, res) => {
 	res.sendFile(process.cwd() + "/Views/index.html")
 })
 app.use("/api", apiRouter)
-app.use("/auth", authRouter)
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
