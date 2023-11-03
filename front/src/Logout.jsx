@@ -6,6 +6,6 @@ export function Logout() {
     useEffect(() => {
         localStorage.removeItem('jwt');
         navigate('/');
-    }, []);
+    });
     return (<div>Logout</div>);
 }
