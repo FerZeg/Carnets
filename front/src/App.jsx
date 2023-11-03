@@ -2,18 +2,60 @@ import './App.css'
 import LogButton from './components/LogButton/LogButton'
 import TwitchIcon from './components/TwitchIcon'
 import Menu from './components/menu/Menu'
-import menus from '../menus'
+import { useContext, useEffect, useState } from 'react'
+import { loginContext } from './main.jsx'
+
+const fetchData = async () => {
+  console.log(localStorage.getItem("jwt"))
+  if(!localStorage.getItem("jwt")) return null
+  const response = await fetch(`http://localhost:3000/api/auth/data`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+    }
+  })
+  if(response.ok) {
+    const data = await response.json()
+    return data
+  }
+  return null
+}
 
 function App() {
+  const [ login, setLogin ] = useState({
+    value: false,
+    data: null
+  })
 
+  const isLogged = useContext(loginContext)
+  useEffect(() => {
+    document.title = "Carnets"
+    console.log("useEffect")
+    ;(async() => {
+      console.log("fetching data")
+      const data = await fetchData()
+      if(data) {
+        setLogin({value: true, data: data})
+      }
+    })()
+  }, [])
+  console.log("login: ", login)
+  console.log("isLogged: ", isLogged)
   return (
-    <div>
-      <h1>Carnets</h1>
-      <Menu links={menus.main.urls}></Menu>
-      <LogButton text="Conectar con twitch">
-        <TwitchIcon />
-      </LogButton>
-    </div>
+    <>
+    <loginContext.Provider value={login}>
+      <div id="MenuContainer">
+        {login.value ?
+         (<Menu/>)
+         :
+         (<LogButton text="Conectar con twitch">
+            <TwitchIcon />
+          </LogButton>)
+        }
+      </div>
+    </loginContext.Provider>
+    </>
   )
 }
 
