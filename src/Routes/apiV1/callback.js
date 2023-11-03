@@ -5,13 +5,6 @@ import  AuthToken from "../../Controllers/authtokens.js"
 const router = Router()
 
 router.get("/twitch", async (req, res, next) => {
-	const token = req.cookies.token
-	if(token) {
-		const verify = await AuthToken.verifyAuthToken(token)
-		if(verify) {
-			return res.redirect("/")
-		}
-	}
 	try{
 		const response = await TwitchApi.getOauthToken(req.query.code)
 		const userData = await TwitchApi.getUserDataBearer(response.access_token)
@@ -33,7 +26,8 @@ router.get("/twitch", async (req, res, next) => {
 			type: ""
 		})
 		console.log(user.data)
-		return res.cookie("token", AuthToken.createAuthToken(user.data), {httpOnly: true}).redirect("/")
+		const tokenCreated = AuthToken.createAuthToken(user.data)
+		return res.redirect(`http://localhost:5173/success?token=${tokenCreated}`)
 	} catch (error) {
 		next(error)
 	}

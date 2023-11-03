@@ -1,12 +1,13 @@
 import express from "express"
-import cookieParser from "cookie-parser"
 //import { rankingRouter } from './routes/ranking.js'
 import {connect} from "./conexion.js"
 import apiRouter from "./Routes/apiV1/api.js"
+import cors from "cors"
 const app = express()
 const PORT = process.env.PORT || 3000
 
 app.disable("x-powered-by")
+app.use(cors())
 
 app.listen(PORT, () => {
 	console.log(process.cwd())
@@ -17,15 +18,10 @@ app.listen(PORT, () => {
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
-app.use(cookieParser())
-//app.use('/ranking', rankingRouter)
 
+app.use(express.static("public"))
 app.get("/", (req, res) => {
-	res.sendFile(process.cwd() + "/Views/index.html")
+	res.sendFile("index.html", {root: "./public/"})
 })
-app.use("/api", apiRouter)
 
-// eslint-disable-next-line no-unused-vars
-app.use((err, req, res, next) => {
-	res.status(500).sendFile(process.cwd() + "/Views/500.html")
-})
+app.use("/api", apiRouter)
