@@ -10,6 +10,7 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Error404 from './pages/Error404/404.jsx'
 import Page500 from './pages/Error500/Page500.jsx';
 import { Success } from './Success.jsx';
+import { Logout } from './Logout.jsx';
 export const loginContext = createContext({value: false, data: null})
 
 const router = createBrowserRouter([
@@ -20,6 +21,14 @@ const router = createBrowserRouter([
   {
     path: "about",
     element: <div>About</div>,
+  },
+  {
+    path: "success",
+    element: <Success/>,
+  },
+  {
+    path: "logout",
+    element: <Logout/>,
   },
   {
     path: "404",
@@ -37,10 +46,6 @@ const router = createBrowserRouter([
     path: "error",
     element: <Page500/>,
   },
-  {
-    path: "success",
-    element: <Success/>,
-  }
 ]);
 
 

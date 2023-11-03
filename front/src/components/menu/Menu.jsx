@@ -12,14 +12,21 @@ import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
 import { loginContext } from '../../main.jsx';
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate()
   const authContextValue = useContext(loginContext)
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleLogout = () => {
+    console.log("logout")
+    alert("logout")
+    navigate('/logout')
+  }
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -86,9 +93,9 @@ export default function AccountMenu() {
           </ListItemIcon>
           Opciones - Soon
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handleLogout}>
           <ListItemIcon>
-            <Logout fontSize="small" />
+            <Logout fontSize="small"/>
           </ListItemIcon>
           Logout
         </MenuItem>
