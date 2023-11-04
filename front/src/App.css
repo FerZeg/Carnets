@@ -23,6 +23,7 @@
 #MenuContainer a {
     border: 1px solid transparent;
     transition: 0.3s;
+    color: black;
 }
 #MenuContainer a:hover {
     border-bottom: 1px solid black;
@@ -55,15 +56,16 @@ a {
     display: flex;
     border: 1px solid black;
     padding: 6px;
-    width: 300px;
+    width: 400px;
     gap: 20px;
     align-items: center;
     border-radius: 6px;
     transition: 0.3s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .CarnetBox:hover{
     cursor: pointer;
-    background-color: #f1f1f1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 }
 .CarnetBox img {
