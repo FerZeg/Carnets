@@ -13,6 +13,7 @@ import Logout from '@mui/icons-material/Logout';
 import { loginContext } from '../../main.jsx';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -32,8 +33,8 @@ export default function AccountMenu() {
   return (
     <>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Typography sx={{ minWidth: 100 }}>Carnets</Typography>
-        <Typography sx={{ minWidth: 100 }}>Streamers</Typography>
+        <Typography sx={{ minWidth: 100 }}><Link to="/carnets">Carnets</Link></Typography>
+        <Typography sx={{ minWidth: 100 }}><Link to="/streamers">Streamers</Link></Typography>
         <Tooltip title="Ajustes">
           <IconButton
             onClick={handleClick}

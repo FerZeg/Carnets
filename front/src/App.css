@@ -4,7 +4,7 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-.carnetsTitle {
+.Title {
     font-size: 3rem;
     color: #212121;
     letter-spacing: 8px;
@@ -13,17 +13,22 @@
     2px 2px 0px #bcbcbc,
     3px 3px 0px #000000;
 }
-.carnetsTitle {
-    font-size: 3rem;
-    font-weight: 500;
-    animation: rotate-shadow 5s infinite linear;
-}
 
 #MenuContainer {
     display: flex;
     justify-content: end;
     padding: 20px;
     width: 100%;
+}
+#MenuContainer a {
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+#MenuContainer a:hover {
+    border-bottom: 1px solid black;
+}
+a {
+    text-decoration: none;
 }
 #LoginContainer {
     display: flex;
