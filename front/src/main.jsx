@@ -14,14 +14,12 @@ import { Logout } from './Logout.jsx';
 import StreamersPage from './pages/Streamers/StreamersPage.jsx';
 export const loginContext = createContext({value: false, data: null})
 
+import Layout from './Layout.jsx';
+
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
-  },
-  {
-    path: "about",
-    element: <div>About</div>,
+    path: "",
+    element: <Layout><App/></Layout>,
   },
   {
     path: "success",
@@ -33,11 +31,7 @@ const router = createBrowserRouter([
   },
   {
     path: "streamers",
-    element: <StreamersPage/>,
-  },
-  {
-    path: "404",
-    element: <Error404 />,
+    element: <Layout><StreamersPage/></Layout>,
   },
   {
     path: "*",

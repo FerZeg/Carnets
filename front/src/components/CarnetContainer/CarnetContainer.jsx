@@ -33,7 +33,7 @@ export default function CarnetContainer() {
     return (
         <>
         <div id="CarnetContainer">
-        <h1 className="carnetsTitle">CARNETS</h1>
+        <h1 className="Title">CARNETS</h1>
         <div id="MultiCarnetContainer">
             {carnets && !loading &&  
                 carnets.map(carnet => (
