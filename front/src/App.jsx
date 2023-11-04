@@ -2,8 +2,9 @@ import './App.css'
 import LogButton from './components/LogButton/LogButton'
 import TwitchIcon from './components/TwitchIcon'
 import Menu from './components/menu/Menu'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { loginContext } from './main.jsx'
+import CarnetContainer from './components/CarnetContainer/CarnetContainer.jsx'
 
 const fetchData = async () => {
   console.log(localStorage.getItem("jwt"))
@@ -23,12 +24,12 @@ const fetchData = async () => {
 }
 
 function App() {
+  let [ loading, setLoading ] = useState(true)
   const [ login, setLogin ] = useState({
     value: false,
     data: null
   })
 
-  const isLogged = useContext(loginContext)
   useEffect(() => {
     document.title = "Carnets"
     console.log("useEffect")
@@ -37,13 +38,15 @@ function App() {
       const data = await fetchData()
       if(data) {
         setLogin({value: true, data: data})
+      } else {
+        setLogin({value: false, data: null})
       }
+      setLoading(false)
     })()
   }, [])
-  console.log("login: ", login)
-  console.log("isLogged: ", isLogged)
   return (
     <>
+    {!loading &&
     <loginContext.Provider value={login}>
         {!login.value ?
         <div id="LoginContainer">
@@ -53,12 +56,16 @@ function App() {
           </LogButton>
         </div>
          :
-         <div id="MenuContainer">
-          <Menu />
-          </div>
+         <>
+          <div id="MenuContainer"><Menu/></div>
+          <CarnetContainer/>
+         </>
+
         }
     </loginContext.Provider>
+  }
     </>
+    
   )
 }
 

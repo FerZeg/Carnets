@@ -34,7 +34,7 @@ export default function AccountMenu() {
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Typography sx={{ minWidth: 100 }}>Carnets</Typography>
         <Typography sx={{ minWidth: 100 }}>Streamers</Typography>
-        <Tooltip title="Ajustes de cuenta">
+        <Tooltip title="Ajustes">
           <IconButton
             onClick={handleClick}
             size="small"
