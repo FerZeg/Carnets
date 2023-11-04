@@ -11,6 +11,7 @@ import Error404 from './pages/Error404/404.jsx'
 import Page500 from './pages/Error500/Page500.jsx';
 import { Success } from './Success.jsx';
 import { Logout } from './Logout.jsx';
+import StreamersPage from './pages/Streamers/StreamersPage.jsx';
 export const loginContext = createContext({value: false, data: null})
 
 const router = createBrowserRouter([
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "logout",
     element: <Logout/>,
+  },
+  {
+    path: "streamers",
+    element: <StreamersPage/>,
   },
   {
     path: "404",

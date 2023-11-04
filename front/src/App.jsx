@@ -7,7 +7,7 @@ import { loginContext } from './main.jsx'
 import CarnetContainer from './components/CarnetContainer/CarnetContainer.jsx'
 
 const fetchData = async () => {
-  console.log(localStorage.getItem("jwt"))
+  try {
   if(!localStorage.getItem("jwt")) return null
   const response = await fetch(`http://localhost:3000/api/auth/data`, {
     method: "GET",
@@ -20,7 +20,11 @@ const fetchData = async () => {
     const data = await response.json()
     return data
   }
+  } catch(e) {
+    return null
+  }
   return null
+
 }
 
 function App() {
@@ -32,9 +36,7 @@ function App() {
 
   useEffect(() => {
     document.title = "Carnets"
-    console.log("useEffect")
     ;(async() => {
-      console.log("fetching data")
       const data = await fetchData()
       if(data) {
         setLogin({value: true, data: data})
