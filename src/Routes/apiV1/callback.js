@@ -25,7 +25,6 @@ router.get("/twitch", async (req, res, next) => {
 			scope: response.scope,
 			type: ""
 		})
-		console.log(user.data)
 		const tokenCreated = AuthToken.createAuthToken(user.data)
 		return res.redirect(`http://localhost:5173/success?token=${tokenCreated}`)
 	} catch (error) {
