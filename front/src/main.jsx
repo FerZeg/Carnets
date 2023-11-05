@@ -22,6 +22,10 @@ const router = createBrowserRouter([
     element: <Layout><App/></Layout>,
   },
   {
+    path: "carnets",
+    element: <Layout><App/></Layout>,
+  },
+  {
     path: "success",
     element: <Success/>,
   },
