@@ -34,9 +34,9 @@ export default function CarnetContainer() {
         <>
         <div id="CarnetContainer">
         <h1 className="Title">CARNETS</h1>
-        <div id="MultiCarnetContainer">
             {carnets && !loading &&  
-                carnets.map(carnet => (
+                <div id="MultiCarnetContainer">
+                {carnets.map(carnet => (
                     <div className="CarnetBox" key={carnet._id}>
                         <section>
                             <img src={carnet.streamer.profile_url} alt="streamer img" />
@@ -45,9 +45,9 @@ export default function CarnetContainer() {
                             <h2>{carnet.streamer.name}</h2>
                         </section>
                     </div>
-                ))
-        }
-        </div>
+                ))} 
+                </div>
+            }
         </div>
         </>
     )
