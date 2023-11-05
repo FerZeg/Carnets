@@ -25,6 +25,33 @@ router.post("/", verifyAuthTokenMiddleware, async (req, res, next) => {
 		next(err)
 	}
 })
+router.get("/:channelname", verifyAuthTokenMiddleware, async (req, res, next) => {
+	try {
+		const id = req.user.id
+		const channelname = req.params.channelname
+		const streamer = await UserModel.getUserByTwitchName(channelname)
+		console.log(streamer)
+		if(!streamer) throw new NotFoundError("No se ha encontrado el canal")
+		const carnet = await CarnetModel.getByUserAndChannel(id, streamer._id)
+		const user = await User.getUserById(id)
+		if(!carnet) throw new NotFoundError("No se ha encontrado ningún carnet")
+		return res.status(200).json({
+			carnet, 
+			streamer: {
+				id: streamer._id, twitch_id: streamer.twitch_id, display_name: streamer.display_name, profile_image_url: streamer.profile_image_url
+			},
+			user: {
+				id: user.display_name,
+				profile_image_url: user.profile_image_url,
+				twitch_id: user.twitch_id,
+				display_name: user.display_name
+			}
+		})
+	} catch(err) {
+		next(err)
+	}
+})
+
 router.get("/", verifyAuthTokenMiddleware, async (req, res, next) => {
 	try {
 		const id = req.user.id
@@ -46,31 +73,6 @@ router.get("/", verifyAuthTokenMiddleware, async (req, res, next) => {
 		})
 		const result = await Promise.all(promises)
 		return res.status(200).json(result)
-	} catch(err) {
-		next(err)
-	}
-})
-router.get("/:channelname", verifyAuthTokenMiddleware, async (req, res, next) => {
-	try {
-		const id = req.user.id
-		const channelname = req.params.channelname
-		const streamer = await UserModel.getUserByTwitchName(channelname)
-		if(!streamer) throw new NotFoundError("No se ha encontrado el canal")
-		const carnet = await CarnetModel.getByUserAndChannel(id, streamer._id)
-		const user = await User.getUserById(id)
-		if(!carnet) throw new NotFoundError("No se ha encontrado ningún carnet")
-		return res.status(200).json({
-			carnet, 
-			streamer: {
-				id: streamer._id, twitch_id: streamer.twitch_id, display_name: streamer.display_name, profile_image_url: streamer.profile_image_url
-			},
-			user: {
-				id: user.display_name,
-				profile_image_url: user.profile_image_url,
-				twitch_id: user.twitch_id,
-				display_name: user.display_name
-			}
-		})
 	} catch(err) {
 		next(err)
 	}

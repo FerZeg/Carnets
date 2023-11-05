@@ -28,7 +28,7 @@ export const verifyAuthTokenMiddleware = async (req, res, next) => {
 	try {
 		const decoded = await verifyAuthToken(token)
 		req.user = decoded.payload
-		next()
+		return next()
 	} catch (error) {
 		return res.status(401).redirect("/logout")
 	}

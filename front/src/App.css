@@ -30,6 +30,7 @@
 }
 a {
     text-decoration: none;
+    color: inherit;
 }
 #LoginContainer {
     display: flex;
@@ -70,8 +71,8 @@ a {
 }
 .CarnetBox img {
     border-radius: 6px;
+    width: 70px;
 }
-/* TODO: tamaño de imagen. */
 #MultiCarnetContainer {
     display: grid;
     gap: 30px;

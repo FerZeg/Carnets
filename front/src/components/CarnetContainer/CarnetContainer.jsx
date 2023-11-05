@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 const fetchCarnets = async () => {
     try {
@@ -17,8 +18,6 @@ const fetchCarnets = async () => {
         return null
     }
     return null
-
-
 }
 
 export default function CarnetContainer() {
@@ -37,7 +36,8 @@ export default function CarnetContainer() {
             {carnets && !loading &&  
                 <div id="MultiCarnetContainer">
                 {carnets.map(carnet => (
-                    <div className="CarnetBox" key={carnet._id}>
+                    <Link to={`/${carnet.streamer.name}`}  key={carnet._id}>
+                    <div className="CarnetBox">
                         <section>
                             <img src={carnet.streamer.profile_url} alt="streamer img" />
                         </section>
@@ -45,6 +45,7 @@ export default function CarnetContainer() {
                             <h2>{carnet.streamer.name}</h2>
                         </section>
                     </div>
+                    </Link>
                 ))} 
                 </div>
             }
