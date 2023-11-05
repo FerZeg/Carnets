@@ -12,6 +12,7 @@ import Page500 from './pages/Error500/Page500.jsx';
 import { Success } from './Success.jsx';
 import { Logout } from './Logout.jsx';
 import StreamersPage from './pages/Streamers/StreamersPage.jsx';
+import StreamerCard from './pages/StreamerCard/StreamerCard.jsx';
 export const loginContext = createContext({value: false, data: null})
 
 import Layout from './Layout.jsx';
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
     element: <Layout><StreamersPage/></Layout>,
   },
   {
-    path: "*",
+    path: "404",
     element: <Error404 />,
   },
   {
@@ -49,6 +50,11 @@ const router = createBrowserRouter([
     path: "error",
     element: <Page500/>,
   },
+  {
+    path: "/:id",
+    element: <Layout><StreamerCard/></Layout>,
+    errorElement: <Error404/>,
+  }
 ]);
 
 

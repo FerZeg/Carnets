@@ -1,0 +1,14 @@
+.AtroposCarnet {
+    width: 600px;
+    height: 400px;
+}
+.CarnetStreamerBox {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+}
+#CardPageContainer {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
