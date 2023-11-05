@@ -30,7 +30,7 @@ export default function StreamersPage() {
     }, [])
     return (
         <div id="StreamerPage">
-            <h1 className='Title' style={{textAlign: 'center'}}>Streamers</h1>
+            <h1 className='Title' style={{textAlign: 'center'}}>STREAMERS</h1>
             <div id="StreamerContainer">
             {!loading && streamers.length > 0 && (
                 streamers.map(streamer => (

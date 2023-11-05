@@ -71,6 +71,7 @@ a {
 .CarnetBox img {
     border-radius: 6px;
 }
+/* TODO: tamaño de imagen. */
 #MultiCarnetContainer {
     display: grid;
     gap: 30px;
