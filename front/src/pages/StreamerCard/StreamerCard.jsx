@@ -5,6 +5,21 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
+function BackgroundPattern() {
+    return (
+        <svg width="100%" height="100%">
+  <defs>
+    <pattern id="pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="20" height="20" fill="#00000" opacity="0.2" />
+      <line x1="0" y1="0" x2="20" y2="20" stroke="#FFFFFF" strokeWidth="1" opacity="0.2" />
+      <line x1="20" y1="0" x2="0" y2="20" stroke="#FFFFFF" strokeWidth="1" opacity="0.2"/>
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern)" />
+</svg>
+    )
+}
+
 export default function StreamerCard() {
     const [carnet, setCarnet] = useState([])
     const [loading, setLoading] = useState(true)
@@ -39,6 +54,9 @@ export default function StreamerCard() {
                     <section>
                         <h2>{carnet.streamer.display_name}</h2>
                     </section>
+                    <div id="backgroundContainer">
+                        <BackgroundPattern />
+                    </div>
                 </div>
             </Atropos>
         }
