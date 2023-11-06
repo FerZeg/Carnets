@@ -38,12 +38,11 @@ export const refreshToken = async (refresh_token) => {
 			"refresh_token": refresh_token,
 			"grant_type": "refresh_token"})
 	})
-	if(!response.ok) throw new Error(response.statusText)
 	const data = await response.json()
 	return data
 }
-export const isUserFollowingChannel = async (access_token, user_id, broadcaster_id) => {
-	const URL = TwitchApiURL + `/channels/followed?user_id=${user_id}&broadcaster_id=${broadcaster_id}`
+export const isUserFollowingChannel = async (access_token, user, broadcaster_id) => {
+	const URL = TwitchApiURL + `/channels/followed?user_id=${user.twitch_id}&broadcaster_id=${broadcaster_id}`
 	const response = await fetch(URL, {
 		headers: {
 			"Authorization": "Bearer " + access_token,
@@ -53,9 +52,9 @@ export const isUserFollowingChannel = async (access_token, user_id, broadcaster_
 	console.log(response.status)
 	if(!response.ok) {
 		if(response.status === 401) {
-			const resp = await tryRefreshTokens(access_token, user_id)
+			const resp = await tryRefreshTokens(access_token, user._id)
 			if(!resp) throw new Error("Error al actualizar tokens")
-			return isUserFollowingChannel(resp.access_token, user_id, broadcaster_id)
+			return isUserFollowingChannel(resp.access_token, user._id, broadcaster_id)
 		}
 	}
 	const data = await response.json()
@@ -75,8 +74,10 @@ export const validateToken = async (access_token) => {
 }
 export const tryRefreshTokens = async (access_token, user_id) => {
 	const resp = await validateToken(access_token)
+	const finalId = user_id
+	console.log(finalId + " sasa")
 	if(!resp.ok) {
-		const user = await UserModel.getUserById(user_id)
+		const user = await UserModel.getUserById(finalId)
 		const resp = await refreshToken(user.refresh_token)
 		UserModel.updateUser(user_id, {access_token: resp.access_token, refresh_token: resp.refresh_token})
 		return resp

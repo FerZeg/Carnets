@@ -13,8 +13,9 @@ router.post("/:channelname", verifyAuthTokenMiddleware, async (req, res, next) =
 	try {
 		const user = await User.getUserById(id)
 		const streamer = await UserModel.getUserByTwitchName(req.params.channelname)
+		console.log(streamer)
 		if(!streamer) throw new BadRequestError("No existe ese canal", ["InvalidChannel"])
-		const isFollowing = await TwitchApi.isUserFollowingChannel(user.access_token, user.twitch_id, streamer.twitch_id)
+		const isFollowing = await TwitchApi.isUserFollowingChannel(user.access_token, user, streamer.twitch_id)
 		if(!isFollowing) throw new BadRequestError("No sigues a este canal", ["NotFollowing"])
 		const carnet = await CarnetModel.getByUserAndChannel(id, streamer._id)
 		if(carnet) throw new BadRequestError("Ya tienes un carnet de este canal", ["AlreadyExist"])

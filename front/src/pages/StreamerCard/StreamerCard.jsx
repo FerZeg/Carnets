@@ -4,7 +4,7 @@ import './StreamerCard.css'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { fetchCarnet } from '../../lib/fetchers'
+import { createCarnet, fetchCarnet } from '../../lib/fetchers'
 
 function BackgroundPattern() {
     return (
@@ -17,6 +17,11 @@ export default function StreamerCard() {
     const [loading, setLoading] = useState(true)
     const location = useLocation()
     const name = location.pathname.split('/')[1]
+    const handleClick = async () => {
+        createCarnet(name).then(res => {
+            if(res) setCarnet(null)
+        })
+    }
     useEffect(() => {
         fetchCarnet(name).then(res => {
             console.log(res)
@@ -24,7 +29,7 @@ export default function StreamerCard() {
             if(res === false) setCarnet(false)
             setLoading(false)
         });
-    }, [name])
+    }, [name, carnet])
     return(
         <div id="CardPageContainer">
         <nav id='CarnetMenu'>
@@ -56,7 +61,7 @@ export default function StreamerCard() {
                             <BackgroundPattern />
                         </div>
                         <div className='content'>
-                            <button>Crear Carnet</button>
+                            <button onClick={handleClick}>Crear Carnet</button>
                         </div>
                     </>
 

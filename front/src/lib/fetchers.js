@@ -73,4 +73,12 @@ export const fetchCarnet = async (channelname) => {
 }
 
 export const createCarnet = async (channelname) => {
+    const response = await fetch(`http://localhost:3000/api/carnet/${channelname}`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        }
+    })
+    return response.ok
+
 }
