@@ -67,9 +67,9 @@ export const fetchCarnet = async (channelname) => {
         if(response.status === 400) return false
         if(response.status === 404) return null
     } catch(e) {
-        return false
+        return null
     }
-    return false
+    return null
 }
 
 export const createCarnet = async (channelname) => {

@@ -31,13 +31,13 @@ export const getUsers = async (max = 25, n = 1) => {
 }
 export const getUserById = async (id) => {
 	const user = await userCollection.findOne({ _id: new ObjectId(id) })
-	console.log("oiujspdfjihksfhjiklsfdjkhlfsdk", user, id)
 	if (!user) {
 		throw new NotFoundError("No se encontró ningún usuario con ese ID")
 	}
 	// eslint-disable-next-line no-unused-vars
-	const { password, login, access_token, refresh_token, scope, ...safeUser } = user
-	return safeUser
+	//BUG
+	//const { password, login, access_token, refresh_token, scope, ...safeUser } = user
+	return user
 }
 export const getUserByTwitchId = async (twitch_id) => {
 	return await userCollection.findOne({ twitch_id })
