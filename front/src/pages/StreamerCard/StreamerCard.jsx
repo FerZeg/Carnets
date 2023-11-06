@@ -4,6 +4,7 @@ import './StreamerCard.css'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { fetchCarnet } from '../../lib/fetchers'
 
 function BackgroundPattern() {
     return (
@@ -15,25 +16,15 @@ export default function StreamerCard() {
     const [carnet, setCarnet] = useState(null)
     const [loading, setLoading] = useState(true)
     const location = useLocation()
+    const name = location.pathname.split('/')[1]
     useEffect(() => {
-        (async () => {
-            const response = await fetch(`http://localhost:3000/api/carnet/${location.pathname.split('/')[1]}`, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("jwt")}`
-                }
-            })
-            if(!response.ok && response.status === 404) {
-                const error = await response.json()
-                if(error.error_type === "NotFound") {
-                    console.log("erooeoeoeoe")
-                    throw new Error("Not Found")
-            }
-        }
-            const ticketJson = await response.json()
-            setCarnet(ticketJson)
+        fetchCarnet(name).then(res => {
+            console.log(res)
+            if(res) setCarnet(res)
+            if(res === false) setCarnet(false)
             setLoading(false)
-        })();
-    }, [location.pathname])
+        });
+    }, [name])
     return(
         <div id="CardPageContainer">
         <nav id='CarnetMenu'>
@@ -42,18 +33,34 @@ export default function StreamerCard() {
                 <li>Ranking</li>
             </ul>
         </nav>
-        {!loading && carnet &&
+        {!loading &&
             <Atropos className="AtroposCarnet">
                 <div className="CarnetStreamerBox">
-                    <section>
-                        <img src={carnet.user.profile_image_url} alt="user img" />
-                    </section>
-                    <section>
-                        <h2>{carnet.streamer.display_name}</h2>
-                    </section>
-                    <div id="backgroundContainer">
-                        <BackgroundPattern />
-                    </div>
+                    {carnet &&
+                    <>
+                        <section>
+                            <img src={carnet.user.profile_image_url} alt="user img" />
+                        </section>
+                        <section>
+                            <h2>{carnet.streamer.display_name}</h2>
+                        </section>
+                        <div id="backgroundContainer">
+                            <BackgroundPattern />
+                        </div>
+                    </>
+                }
+                {
+                    carnet === null &&
+                    <>
+                        <div id="backgroundContainer">
+                            <BackgroundPattern />
+                        </div>
+                        <div className='content'>
+                            <button>Crear Carnet</button>
+                        </div>
+                    </>
+
+                }
                 </div>
             </Atropos>
         }

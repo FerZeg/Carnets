@@ -10,6 +10,30 @@
     z-index: -1;
     border-radius: 12px;
 }
+.CarnetStreamerBox .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+.CarnetStreamerBox button {
+    position: absolute;
+    padding: 10px;
+    background-color: rgb(31, 115, 225);
+    color: white;
+    border: 2px solid rgb(200, 205, 212);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    font-weight: 400;
+    font-size: 1.3rem;
+    max-width: 80%;
+}
+.CarnetStreamerBox button:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: 0.3s;
+}
 .CarnetStreamerBox img {
     position: relative;
     padding: 5px;

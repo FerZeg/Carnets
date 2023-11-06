@@ -52,3 +52,25 @@ export const fetchStreamers = async () => {
     }
     return null
 }
+
+export const fetchCarnet = async (channelname) => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/carnet/${channelname}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`
+            } 
+        })
+        if(response.ok) {
+            const data = await response.json()
+            return data
+        }
+        if(response.status === 400) return false
+        if(response.status === 404) return null
+    } catch(e) {
+        return false
+    }
+    return false
+}
+
+export const createCarnet = async (channelname) => {
+}
