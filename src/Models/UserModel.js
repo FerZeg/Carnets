@@ -31,6 +31,7 @@ export const getUsers = async (max = 25, n = 1) => {
 }
 export const getUserById = async (id) => {
 	const user = await userCollection.findOne({ _id: new ObjectId(id) })
+	console.log("oiujspdfjihksfhjiklsfdjkhlfsdk", user, id)
 	if (!user) {
 		throw new NotFoundError("No se encontró ningún usuario con ese ID")
 	}
