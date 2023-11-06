@@ -19,17 +19,20 @@ export default function StreamerCard() {
     const name = location.pathname.split('/')[1]
     const handleClick = async () => {
         createCarnet(name).then(res => {
-            if(res) setCarnet(null)
+            if(res) {
+                fetchCarnet(name).then(res => {
+                    setCarnet(res)
+                })
+            }
         })
     }
     useEffect(() => {
         fetchCarnet(name).then(res => {
             console.log(res)
             if(res) setCarnet(res)
-            if(res === false) setCarnet(false)
             setLoading(false)
         });
-    }, [name, carnet])
+    }, [name])
     return(
         <div id="CardPageContainer">
         <nav id='CarnetMenu'>

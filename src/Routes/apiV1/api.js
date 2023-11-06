@@ -11,6 +11,7 @@ router.use("/streamer", streamerRouter)
 router.use("/carnet", carnetRouter)
 router.use("/ranking", rankingRouter)
 router.use("/callback", callbackRouter)
+
 // eslint-disable-next-line no-unused-vars
 router.use((err, req, res, next) => {
 	if(err instanceof UnauthorizedError) {

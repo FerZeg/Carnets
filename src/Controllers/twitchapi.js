@@ -49,7 +49,6 @@ export const isUserFollowingChannel = async (access_token, user, broadcaster_id)
 			"Client-Id": process.env.CLIENT_ID
 		}
 	})
-	console.log(response.status)
 	if(!response.ok) {
 		if(response.status === 401) {
 			const resp = await tryRefreshTokens(access_token, user._id)
@@ -75,7 +74,6 @@ export const validateToken = async (access_token) => {
 export const tryRefreshTokens = async (access_token, user_id) => {
 	const resp = await validateToken(access_token)
 	const finalId = user_id
-	console.log(finalId + " sasa")
 	if(!resp.ok) {
 		const user = await UserModel.getUserById(finalId)
 		const resp = await refreshToken(user.refresh_token)
