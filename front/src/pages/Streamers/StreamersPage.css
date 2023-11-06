@@ -1,13 +1,13 @@
 #StreamerContainer {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(0, 1fr);
     justify-content: center;
     padding: 10px;
     gap: 10px;
     max-width: 70%;
     margin: 0 auto;
 }
-#StreamerContainer > div {
+#StreamerContainer .StreamerBox {
     border: 1px solid black;
     display: flex;
     justify-content: left;
@@ -16,14 +16,26 @@
     align-items: center;
     flex-direction: row-reverse;
     border-radius: 6px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    transition: 0.3s;
 }
-#StreamerContainer > div img {
+#StreamerContainer .StreamerBox:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+#StreamerContainer .StreamerBox img {
     width: 70px;
     border-radius: 6px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (min-width: 1000px) {
+    #StreamerContainer { 
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media screen and (min-width: 1500px) {
     #StreamerContainer {
-        grid-template-columns: auto;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
