@@ -8,11 +8,19 @@
     background-color: white;
     position: relative;
     z-index: -1;
+    border-radius: 12px;
+}
+.CarnetStreamerBox img {
+    position: relative;
+    padding: 5px;
+    width: 100px;
 }
 #CardPageContainer {
     height: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 #backgroundContainer {
@@ -22,4 +30,29 @@
     width: 100%;
     height: 100%;
     z-index: -1;
+    border-radius: 12px;
+}
+#CarnetMenu {
+    width: 100%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+#CarnetMenu ul {
+    list-style: none;
+    display: grid;
+    grid-auto-columns: 100px 100px;
+    grid-auto-flow: column;
+    gap: 20px;
+}
+#CarnetMenu li {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+@media screen and (max-width: 650px) {
+    .AtroposCarnet {
+        width: 350px;
+        height: 233px;
+    }
 }

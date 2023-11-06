@@ -2,31 +2,11 @@ import Header from "./components/Header";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { loginContext } from "./main";
+import { fetchUserData } from "./lib/fetchers";
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired
 };
-
-const fetchData = async () => {
-    try {
-    if(!localStorage.getItem("jwt")) return null
-    const response = await fetch(`http://localhost:3000/api/auth/data`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("jwt")}`
-      }
-    })
-    if(response.ok) {
-      const data = await response.json()
-      return data
-    }
-    } catch(e) {
-      return null
-    }
-    return null
-  
-  }
 
 export default function Layout({ children }) {
     let [ loading, setLoading ] = useState(true)
@@ -37,7 +17,7 @@ export default function Layout({ children }) {
     useEffect(() => {
         document.title = "Carnets"
         ;(async() => {
-          const data = await fetchData()
+          const data = await fetchUserData()
           if(data) {
             setLogin({value: true, data: data})
           } else {

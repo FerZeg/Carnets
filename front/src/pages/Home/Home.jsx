@@ -1,9 +1,9 @@
 import './App.css'
-import LogButton from './components/LogButton/LogButton'
-import TwitchIcon from './components/TwitchIcon'
+import LogButton from '../../components/LogButton/LogButton.jsx'
+import TwitchIcon from '../../components/TwitchIcon.jsx'
 import { useContext} from 'react'
-import { loginContext } from './main.jsx'
-import CarnetContainer from './components/CarnetContainer/CarnetContainer.jsx'
+import { loginContext } from '../../main.jsx'
+import CarnetContainer from '../../components/CarnetContainer/CarnetContainer.jsx'
 
 
 function App() {

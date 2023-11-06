@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react'
-import './css/404.css'
+import './404.css'
 export default function Error404() {
   useEffect(() => {
 
