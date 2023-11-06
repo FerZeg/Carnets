@@ -21,6 +21,7 @@ const router = createBrowserRouter([
   {
     path: "",
     element: <Layout><App/></Layout>,
+    errorElement: <Error404/>,
   },
   {
     path: "carnets",
@@ -53,7 +54,6 @@ const router = createBrowserRouter([
   {
     path: "/:id",
     element: <Layout><StreamerCard/></Layout>,
-    errorElement: <Error404/>,
   }
 ]);
 

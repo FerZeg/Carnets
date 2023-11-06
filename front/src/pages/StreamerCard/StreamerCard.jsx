@@ -12,7 +12,7 @@ function BackgroundPattern() {
 }
 
 export default function StreamerCard() {
-    const [carnet, setCarnet] = useState([])
+    const [carnet, setCarnet] = useState(null)
     const [loading, setLoading] = useState(true)
     const location = useLocation()
     useEffect(() => {
