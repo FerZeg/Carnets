@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { loginContext } from "./main";
 import { fetchUserData } from "./lib/fetchers";
-
+import "./index.css";
 Layout.propTypes = {
     children: PropTypes.node.isRequired
 };
