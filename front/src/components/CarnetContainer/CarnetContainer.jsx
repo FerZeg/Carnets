@@ -1,24 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-
-const fetchCarnets = async () => {
-    try {
-        const response = await fetch(`http://localhost:3000/api/carnet`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${localStorage.getItem("jwt")}`
-            }
-        })
-        if(response.ok) {
-            const data = await response.json()
-            return data
-        }
-    } catch(e) {
-        return null
-    }
-    return null
-}
+import { fetchCarnets } from "../../lib/fetchers"
 
 export default function CarnetContainer() {
     const [carnets, setCarnets] = useState([])

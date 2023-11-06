@@ -24,7 +24,6 @@ export default function AccountMenu() {
     setAnchorEl(event.currentTarget);
   };
   const handleLogout = () => {
-    console.log("logout")
     navigate('/logout')
   }
   const handleClose = () => {

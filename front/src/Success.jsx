@@ -3,9 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 export function Success() {
     const location = useLocation();
-
     const navigate = useNavigate();
-
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const token = params.get('token');
@@ -14,7 +12,6 @@ export function Success() {
             navigate('/');
         }
     }, [location.search, navigate]);
-
     return (
         <div>Success!</div>
     );

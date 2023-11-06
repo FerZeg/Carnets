@@ -1,20 +1,5 @@
-const fetchStreamers = async () => {
-    try {
-        const response = await fetch(`http://localhost:3000/api/streamer`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-        if(response.ok) {
-            const data = await response.json()
-            return data
-        }
-    } catch(e) {
-        return null
-    }
-    return null
-}
+import './StreamersPage.css'
+import { fetchStreamers } from '../../lib/fetchers'
 
 import { useState, useEffect } from 'react';
 export default function StreamersPage() {
