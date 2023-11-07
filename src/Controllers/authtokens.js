@@ -3,7 +3,7 @@ import jsonwebtoken from "jsonwebtoken"
 const TIME = 60 * 60 * 24 * 7 // 1 week in seconds
 export const createAuthToken = (user) => {
 	const payload =   {
-		id: user._id,
+		id: user._id.toString(),
 	}
 	const token = jsonwebtoken.sign({payload}, process.env.JWT_SECRET || "secret", {
 		expiresIn: TIME
