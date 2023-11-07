@@ -4,8 +4,6 @@ const TIME = 60 * 60 * 24 * 7 // 1 week in seconds
 export const createAuthToken = (user) => {
 	const payload =   {
 		id: user._id,
-		type: user.type,
-		twitch_id: user.twitch_id,
 	}
 	const token = jsonwebtoken.sign({payload}, process.env.JWT_SECRET || "secret", {
 		expiresIn: TIME
