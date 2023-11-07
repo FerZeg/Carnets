@@ -9,6 +9,11 @@ router.get("/twitch", async (req, res, next) => {
 		const response = await TwitchApi.getOauthToken(req.query.code)
 		const userData = await TwitchApi.getUserDataBearer(response.access_token)
 		const data = userData.data[0]
+		const userExist = await User.getUserByTwitchId(data.id)
+		if(userExist) {
+			const tokenCreated = AuthToken.createAuthToken(userExist)
+			return res.redirect(`http://localhost:5173/success?token=${tokenCreated}`)
+		}
 		const user = await User.createUser({
 			login: data.login, 
 			display_name: data.display_name,
