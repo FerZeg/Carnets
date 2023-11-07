@@ -13,7 +13,6 @@ router.post("/:channelname", verifyAuthTokenMiddleware, async (req, res, next) =
 	try {
 		const user = await User.getUserById(id)
 		const streamer = await UserModel.getUserByTwitchName(req.params.channelname)
-		console.log("token" + user.access_token)
 		if(!streamer) throw new NotFoundError("No existe ese canal", ["InvalidChannel"])
 		const isFollowing = await TwitchApi.isUserFollowingChannel(user.access_token, user, streamer.twitch_id)
 		if(!isFollowing) throw new BadRequestError("No sigues a este canal", ["NotFollowing"])
@@ -22,7 +21,6 @@ router.post("/:channelname", verifyAuthTokenMiddleware, async (req, res, next) =
 		await CarnetModel.create(req.user.id, streamer._id, "twitch")
 		return res.status(200).json("Creado correctamente")
 	} catch(err) {
-		console.log(err)
 		next(err)
 	}
 })
@@ -31,7 +29,6 @@ router.get("/:channelname", verifyAuthTokenMiddleware, async (req, res, next) =>
 		const id = req.user.id
 		const channelname = req.params.channelname
 		const streamer = await UserModel.getUserByTwitchName(channelname)
-		console.log(streamer)
 		if(!streamer) throw new BadRequestError("No existe ese canal")
 		const carnet = await CarnetModel.getByUserAndChannel(id, streamer._id)
 		const user = await User.getUserById(id)
