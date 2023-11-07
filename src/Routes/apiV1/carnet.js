@@ -79,6 +79,4 @@ router.get("/", verifyAuthTokenMiddleware, async (req, res, next) => {
 	}
 })
 
-
-
 export default router
