@@ -2,12 +2,13 @@ import './App.css'
 import LogButton from '../../components/LogButton/LogButton.jsx'
 import TwitchIcon from '../../components/TwitchIcon.jsx'
 import { useContext} from 'react'
-import { loginContext } from '../../main.jsx'
+import { loginContext } from '../../lib/context'
 import CarnetContainer from '../../components/CarnetContainer/CarnetContainer.jsx'
 
 
 function App() {
   const login = useContext(loginContext)
+  console.log(login)
   return (
     <>
         {

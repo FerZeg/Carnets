@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
-import { loginContext } from '../../main.jsx';
+import { loginContext } from '../../lib/context';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
