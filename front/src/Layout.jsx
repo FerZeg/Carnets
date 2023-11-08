@@ -1,14 +1,11 @@
 import Header from "./components/Header";
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import { loginContext } from "./main";
+import { loginContext } from "./lib/context";
 import { fetchUserData } from "./lib/fetchers";
 import "./index.css";
-Layout.propTypes = {
-    children: PropTypes.node.isRequired
-};
+import { Outlet } from "react-router-dom";
 
-export default function Layout({ children }) {
+export default function Layout() {
     let [ loading, setLoading ] = useState(true)
     const [ login, setLogin ] = useState({
       value: false,
@@ -32,7 +29,7 @@ export default function Layout({ children }) {
             {!loading &&
             <>
                 {login.value && <Header /> }
-                {children}
+                <Outlet />
             </>
             }
         </loginContext.Provider>
