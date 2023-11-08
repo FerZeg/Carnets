@@ -5,6 +5,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { createCarnet, fetchCarnet } from '../../lib/fetchers'
+import ConfettiExplosion from 'react-confetti-explosion';
 
 function BackgroundPattern() {
     return (
@@ -15,6 +16,7 @@ function BackgroundPattern() {
 export default function StreamerCard() {
     const [carnet, setCarnet] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [confetti, setConfetti] = useState(false)
     const location = useLocation()
     const name = location.pathname.split('/')[1]
     const handleClick = async () => {
@@ -22,6 +24,7 @@ export default function StreamerCard() {
             if(res) {
                 fetchCarnet(name).then(res => {
                     setCarnet(res)
+                    setConfetti(true)
                 })
             }
         })
@@ -43,6 +46,11 @@ export default function StreamerCard() {
         </nav>
         {!loading &&
             <Atropos className="AtroposCarnet">
+            {
+                confetti && <ConfettiExplosion force={0.6}
+                width={1000} className='confetti'
+                />
+            }
                 <div className="CarnetStreamerBox">
                     {carnet &&
                     <>

@@ -17,6 +17,7 @@
     "@mui/material": "^5.14.16",
     "atropos": "^2.0.2",
     "react": "^18.2.0",
+    "react-confetti-explosion": "^2.1.2",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.18.0",
     "tsparticles-engine": "^2.12.0"
