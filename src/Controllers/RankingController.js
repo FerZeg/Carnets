@@ -2,6 +2,11 @@ import { NotFoundError } from "../Errors.js"
 import RankingModel from "../Models/RankingModel.js"
 import Streamer from "../Models/StreamerModel.js"
 
+/**
+ * Get the ranking of a specific streamer by channel name
+ * @throws {NotFoundError} If the streamer is not found
+ * @returns {Object} Returns the ranking of the streamer
+ */
 export const getRanking = async (req, res, next) =>{
 	try {
 		const channelname = req.params.channelname

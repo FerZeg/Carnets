@@ -23,6 +23,12 @@ export const donwngradeToUser = async (req, res, next) => {
 		next(error)
 	}
 }
+/**
+ * Get streamers with pagination.
+ * @param {Object} req.query.max - The maximum number of streamers to retrieve.
+ * @param {Object} req.query.offset - The offset from which to retrieve the streamers.
+ * @returns {Object} - Returns a JSON object containing the streamers.
+ */
 export const getStreamers = async (req, res, next) => {
 	const {max, offset} = req.query
 	try {
