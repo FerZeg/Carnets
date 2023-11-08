@@ -5,7 +5,9 @@ import rankingRouter from "./ranking.js"
 import authRouter from "./auth.js"
 import callbackRouter from "./callback.js"
 import {BadRequestError, NotFoundError, UnauthorizedError} from "../../Errors.js"
+
 const router = Router()
+
 router.use("/auth", authRouter)
 router.use("/streamer", streamerRouter)
 router.use("/carnet", carnetRouter)
