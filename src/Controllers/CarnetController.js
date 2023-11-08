@@ -10,19 +10,14 @@ export async function createCarnet(req, res, next) {
 	try {
 		const user = await User.getUserById(id)
 		const streamer = await UserModel.getUserByTwitchName(req.params.channelname)
-		console.log(id, streamer._id, id==streamer._id)
 		if(id == streamer._id) {
 			console.log("Carnet creado del mismo usuario")
-			const carnet = await CarnetModel.getByUserAndChannel(id, streamer._id)
-			if(carnet) throw new BadRequestError("Ya tienes un carnet de este canal", ["AlreadyExist"])
 			await CarnetModel.create(id, streamer._id, "twitch")
 			return res.status(200).json("Creado correctamente")
 		}
 		if(!streamer) throw new NotFoundError("No existe ese canal", ["InvalidChannel"])
 		const isFollowing = await TwitchApi.isUserFollowingChannel(user.access_token, user, streamer.twitch_id)
 		if(!isFollowing) throw new BadRequestError("No sigues a este canal", ["NotFollowing"])
-		const carnet = await CarnetModel.getByUserAndChannel(id, streamer._id)
-		if(carnet) throw new BadRequestError("Ya tienes un carnet de este canal", ["AlreadyExist"])
 		await CarnetModel.create(req.user.id, streamer._id, "twitch")
 		return res.status(200).json("Creado correctamente")
 	} catch(err) {
@@ -34,7 +29,6 @@ export async function getCarnets(req, res, next) {
 	try {
 		const id = req.user.id
 		const carnet = await CarnetModel.getByUserId(id)
-		if(!carnet) throw new NotFoundError("No se ha encontrado ningún carnet")
 		const promises = carnet.map(async (carnet) => {
 			const streamer = await UserModel.getUserById(carnet.channel_id)
 			const user = await UserModel.getUserById(carnet.user_id)
