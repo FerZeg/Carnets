@@ -3,6 +3,9 @@ import { ObjectId } from "mongodb"
 import { BadRequestError } from "../Errors.js"
 
 const carnetCollection = db.collection("carnet")
+const indexKeys = { user_id: 1, channel_id: 1, platform: 1 }
+const indexOptions = { unique: true }
+carnetCollection.createIndex(indexKeys, indexOptions)
 
 // Carnet {channel_id{}, user_id{}, id, date, observations, status, type, color, points, _id}
 const Carnet = {
@@ -20,11 +23,13 @@ const Carnet = {
 				updated_at: new Date(),
 				platform
 			})
+			console.log(result)
+			return result
 		} catch(err) {
-			if (err.code === 11000) new BadRequestError("Ya tienes un carnet de este canal", ["AlreadyExist"]);
-			
+			throw err.code === 11000 
+			 ? new BadRequestError("Ya tienes un carnet de este canal", ["AlreadyExist"])
+			 : err
 		}
-		return result
 	},
 	getByUserId: async (user_id) => {
 		const result = carnetCollection.find({ user_id: new ObjectId(user_id) }).toArray()
