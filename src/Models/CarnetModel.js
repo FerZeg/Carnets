@@ -1,27 +1,33 @@
 import { db } from "../conexion.js"
 import { ObjectId } from "mongodb"
+import { BadRequestError } from "../Errors.js"
 
 const carnetCollection = db.collection("carnet")
 
 // Carnet {channel_id{}, user_id{}, id, date, observations, status, type, color, points, _id}
 const Carnet = {
 	create: async (user_id, channel_id, platform) => {
-		const result = await carnetCollection.insertOne({
-			user_id: new ObjectId(user_id),
-			channel_id: new ObjectId(channel_id),
-			observations: "",
-			status: "active",
-			type: "normal",
-			color: "default",
-			points: 0,
-			created_at: new Date(),
-			updated_at: new Date(),
-			platform
-		})
+		try {
+			const result = await carnetCollection.insertOne({
+				user_id: new ObjectId(user_id),
+				channel_id: new ObjectId(channel_id),
+				observations: "",
+				status: "active",
+				type: "normal",
+				color: "default",
+				points: 0,
+				created_at: new Date(),
+				updated_at: new Date(),
+				platform
+			})
+		} catch(err) {
+			if (err.code === 11000) new BadRequestError("Ya tienes un carnet de este canal", ["AlreadyExist"]);
+			
+		}
 		return result
 	},
 	getByUserId: async (user_id) => {
-		const result = await carnetCollection.find({ user_id: new ObjectId(user_id) }).toArray()
+		const result = carnetCollection.find({ user_id: new ObjectId(user_id) }).toArray()
 		return result
 	},
 	getById: async (_id) => {
