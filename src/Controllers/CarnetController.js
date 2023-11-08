@@ -25,6 +25,11 @@ export async function createCarnet(req, res, next) {
 	}
 }
 
+/**
+ * Retrieves all carnet data for the authenticated user.
+ * @param {Object} req.user.id - The user id extracted.
+ * @returns {Object} - The response object containing the carnet data.
+ */
 export async function getCarnets(req, res, next) {
 	try {
 		const id = req.user.id
