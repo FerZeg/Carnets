@@ -23,7 +23,6 @@ const Carnet = {
 				updated_at: new Date(),
 				platform
 			})
-			console.log(result)
 			return result
 		} catch(err) {
 			throw err.code === 11000 
