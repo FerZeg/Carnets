@@ -82,3 +82,20 @@ export const createCarnet = async (channelname) => {
     return response.ok
 
 }
+
+export const fetchRanking = async (channelname) => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/ranking/${channelname}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`
+            }
+        })
+        if(response.ok) {
+            const data = await response.json()
+            return data
+        }
+    } catch(e) {
+        return null
+    }
+    return null
+}

@@ -58,7 +58,7 @@
 }
 #CarnetMenu {
     width: 100%;
-    margin: 20px;
+    margin: 20px 0;
     display: flex;
     justify-content: center;
 }
@@ -71,8 +71,17 @@
 }
 #CarnetMenu li {
     border: 1px solid black;
-    padding: 5px;
     text-align: center;
+}
+#CarnetMenu li a {
+    padding: 5px;
+    display: block;
+    width: 100%;
+    transition: 0.3s;
+}
+#CarnetMenu li a.active {
+    background-color: rgb(31, 115, 225);
+    color: white;
 }
 .confetti {
     position: absolute;

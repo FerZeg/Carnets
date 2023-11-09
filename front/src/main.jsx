@@ -16,6 +16,7 @@ import Carnet from './pages/StreamerCard/Carnet.jsx';
 import Ranking from './pages/StreamerCard/Ranking.jsx';
 import Layout from './Layout.jsx';
 import CarnetContainer from './components/CarnetContainer/CarnetContainer.jsx';
+import { CarnetMenu } from './pages/StreamerCard/CarnetMenu.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,9 +29,9 @@ const router = createBrowserRouter([
       { path: 'streamers' , element: <StreamersPage/> },
       {
         path: ":id",
+        element: <CarnetMenu/>,
         children: [
           { path: '', element: <Carnet /> },
-          { path: 'carnet', element: <Carnet />},
           { path: 'ranking', element: <Ranking /> }
         ]
       }

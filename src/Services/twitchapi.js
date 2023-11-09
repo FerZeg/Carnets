@@ -57,7 +57,7 @@ export const isUserFollowingChannel = async (access_token, user, broadcaster_id)
 		}
 	}
 	const data = await response.json()
-	return data.data.length > 0 ? true : false
+	return data.data.length > 0 ? true : false //Unknown Error some times on .length
 }
 export const validateToken = async (access_token) => {
 	const URL = "https://id.twitch.tv/oauth2/validate"
