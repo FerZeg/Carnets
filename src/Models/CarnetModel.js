@@ -26,13 +26,17 @@ const Carnet = {
 			return result
 		} catch(err) {
 			throw err.code === 11000 
-			 ? new BadRequestError("Ya tienes un carnet de este canal", ["AlreadyExist"])
-			 : err
+				? new BadRequestError("Ya tienes un carnet de este canal", ["AlreadyExist"])
+				: err
 		}
 	},
 	getByUserId: async (user_id) => {
-		const result = carnetCollection.find({ user_id: new ObjectId(user_id) }).toArray()
-		return result
+		try {
+			const result = await carnetCollection.find({ user_id: new ObjectId(user_id) }).toArray()
+			return result
+		} catch(err) {
+			throw new Error("Error al obtener los carnets")
+		}
 	},
 	getById: async (_id) => {
 		const result = await carnetCollection.findOne({ _id })

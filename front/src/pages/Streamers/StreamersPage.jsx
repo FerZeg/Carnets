@@ -29,10 +29,6 @@ export default function StreamersPage() {
                 ))
             )}
             </div>
-            {!loading && streamers.length === 0 && (
-                <h3>No se han encontrado streamers</h3>
-            )}
-
         </div>
     )
 }

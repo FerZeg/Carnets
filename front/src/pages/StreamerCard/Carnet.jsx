@@ -38,12 +38,6 @@ export default function StreamerCard() {
     }, [name])
     return(
         <div id="CardPageContainer">
-        <nav id='CarnetMenu'>
-            <ul>
-                <li>Carnet</li>
-                <li>Ranking</li>
-            </ul>
-        </nav>
         {!loading &&
             <Atropos className="AtroposCarnet">
             {
