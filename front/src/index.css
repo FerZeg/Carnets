@@ -4,8 +4,24 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+html, body, #root { height: 100% }
+#root {
+    display: flex;
+    flex-direction: column;
+}
 .Title {
     font-size: 3rem;
+    color: #212121;
+    letter-spacing: 8px;
+    font-weight: 900;
+    text-shadow:  -1px -1px 0px #7c7c7c,
+    2px 2px 0px #bcbcbc,
+    3px 3px 0px #000000;
+    margin: 15px 0;
+}
+
+.Title2 {
+    font-size: 1.5rem;
     color: #212121;
     letter-spacing: 8px;
     font-weight: 900;

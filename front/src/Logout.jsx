@@ -5,7 +5,7 @@ export function Logout() {
     const navigate = useNavigate();
     useEffect(() => {
         localStorage.removeItem('jwt');
-        navigate('/');
+        navigate('/login');
     });
     return (<div>Logout</div>);
 }

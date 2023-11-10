@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { fetchCarnets } from "../../lib/fetchers"
+import Login from "../../pages/Login/LoginPage"
+import { loginContext } from "../../lib/context"
 
 export default function CarnetContainer() {
     const [carnets, setCarnets] = useState([])
-    const [loading, setLoading] = useState(true)
+    const login = useContext(loginContext)
     useEffect(() => {
+        if(!login.value) return
         fetchCarnets().then(data => {
             setCarnets(data)
-            setLoading(false)
         })
-    }, [])
+    }, [login])
     return (
         <>
         <div id="CarnetContainer">
         <h1 className="Title">CARNETS</h1>
-            {carnets && !loading &&  
+            {carnets.length > 0 &&
                 <div id="MultiCarnetContainer">
                 {carnets.map(carnet => (
                     <Link to={`/${carnet.streamer.name}`}  key={carnet._id}>
@@ -30,8 +32,10 @@ export default function CarnetContainer() {
                     </Link>
                 ))} 
                 </div>
-            }
+            
+        }
         </div>
+        {!login.value && <Login />}
         </>
     )
 }

@@ -40,7 +40,6 @@
     width: 100px;
 }
 #CardPageContainer {
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,6 +87,39 @@
     left: 50%;
     transform: translate(-50%, 0);
     z-index: 10;
+}
+#RankingContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 5px;
+    max-width: 80%;
+    width: 500px;
+    margin: 0 auto;
+}
+#RankingContainer .rankuser {
+    flex-grow: 1;
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 6px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    display: flex;
+    gap: 20px;
+}
+#RankingContainer .rankuser img {
+    width: 70px;
+    border-radius: 6px;
+
+}
+#RankingContainer .rankuser .rankuserdata {
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.allrankedcontainer  {
+    display: flex;
 }
 @media screen and (max-width: 650px) {
     .AtroposCarnet {

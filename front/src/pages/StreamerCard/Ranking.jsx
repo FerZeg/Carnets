@@ -13,20 +13,24 @@ export default function Ranking() {
             setLoading(false)
         })
     }, [name])
-    console.log(ranking)
     return (
-        <>
+        <div id="RankingContainer">
             {!loading && ranking.length > 0 && 
-                ranking.map((user, i) => {
+                ranking.map((carnet, i) => {
                     return (
-                        <div key={i}>
-                            <p>{i + 1 + "abc"}</p>
-                            <p>{user.display_name}</p>
-                            <p>{user.points}</p>
+                        <div className='allrankedcontainer' key={i}>
+                            <span className="Title">{i + 1}</span>
+                            <div className="rankuser">
+                                <img src={carnet.user.profile_url} alt="" />
+                                <div className="rankuserdata">
+                                    <p>{carnet.user.name}</p>
+                                    <p>Puntos: {carnet.points}</p>
+                                </div>
+                            </div>
                         </div>
                     )
                 })
                 }
-        </>
+        </div>
     )
 }

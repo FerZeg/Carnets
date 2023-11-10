@@ -15,11 +15,7 @@ export default function Layout() {
         document.title = "Carnets"
         ;(async() => {
           const data = await fetchUserData()
-          if(data) {
-            setLogin({value: true, data: data})
-          } else {
-            setLogin({value: false, data: null})
-          }
+          if(data) setLogin({value: true, data: data})
           setLoading(false)
         })()
       }, [])
@@ -28,7 +24,7 @@ export default function Layout() {
         <loginContext.Provider value={login}>
             {!loading &&
             <>
-                {login.value && <Header /> }
+                <Header />
                 <Outlet />
             </>
             }

@@ -16,9 +16,15 @@ a {
     text-decoration: none;
     color: inherit;
 }
-#LoginContainer {
+#LoginFillContainer {
     display: flex;
-    min-height: 100vh;
+    flex-grow: 1;
+}
+#LoginContainer {
+    position: relative;
+    top: -80px;
+    flex-grow: 1;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -27,15 +33,12 @@ a {
 }
 
 #CarnetContainer {
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px;
     gap: 20px;
-    height: 100%;
-    z-index: -1;
 }
 .CarnetBox {
     display: flex;

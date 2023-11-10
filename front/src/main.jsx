@@ -17,6 +17,7 @@ import Ranking from './pages/StreamerCard/Ranking.jsx';
 import Layout from './Layout.jsx';
 import CarnetContainer from './components/CarnetContainer/CarnetContainer.jsx';
 import { CarnetMenu } from './pages/StreamerCard/CarnetMenu.jsx';
+import Login from './pages/Login/LoginPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "", element: <App/>},
       { path: 'carnets', element: <CarnetContainer/> },
       { path: 'streamers' , element: <StreamersPage/> },
+      { path: 'login', element: <Login/> },
       {
         path: ":id",
         element: <CarnetMenu/>,

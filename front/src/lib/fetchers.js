@@ -99,3 +99,20 @@ export const fetchRanking = async (channelname) => {
     }
     return null
 }
+
+export const fetchStreamer = async (channelname) => {
+    try {
+        const response = await fetch(`http://localhost:3000/api/streamer/${channelname}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`
+            }
+        })
+        if(response.ok) {
+            const data = await response.json()
+            return data
+        }
+    } catch(e) {
+        return null
+    }
+    return null
+}

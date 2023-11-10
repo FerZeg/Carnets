@@ -43,7 +43,11 @@ export default function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar src={authContextValue.data.profile_image_url} sx={{ width: 32, height: 32}}>M</Avatar>
+            <Avatar src={
+            authContextValue.value 
+              ? authContextValue.data.profile_image_url
+              : "/default.png"
+            } sx={{ width: 32, height: 32}}>M</Avatar>
           </IconButton>
         </Tooltip>
       </Box>
@@ -82,21 +86,27 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
-          <Avatar src={authContextValue.data.profile_image_url}/> Profile
-        </MenuItem>
+        {authContextValue.value &&
+          <MenuItem onClick={handleClose}>
+            <Avatar src={
+                authContextValue.data.profile_image_url
+              }/> Perfil
+          </MenuItem>
+        }
+        {authContextValue.value &&
+          <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+            Opciones
+          </MenuItem>
+        }
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Opciones - Soon
-        </MenuItem>
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
             <Logout fontSize="small"/>
           </ListItemIcon>
-          Logout
+          {authContextValue.value ? "Cerrar Sesión" : "Iniciar Sesión"}
         </MenuItem>
       </Menu>
     </>
