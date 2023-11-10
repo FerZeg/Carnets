@@ -86,13 +86,13 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        {authContextValue.value &&
+        {/*authContextValue.value &&
           <MenuItem onClick={handleClose}>
             <Avatar src={
                 authContextValue.data.profile_image_url
               }/> Perfil
           </MenuItem>
-        }
+            */}
         {authContextValue.value &&
           <MenuItem onClick={handleClose}>
             <ListItemIcon>
