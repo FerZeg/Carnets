@@ -6,6 +6,9 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { createCarnet, fetchCarnet } from '../../lib/fetchers'
 import ConfettiExplosion from 'react-confetti-explosion';
+import { useContext } from 'react'
+import { loginContext } from '../../lib/context'
+import { useNavigate } from 'react-router-dom'
 
 function BackgroundPattern() {
     return (
@@ -17,9 +20,12 @@ export default function StreamerCard() {
     const [carnet, setCarnet] = useState(null)
     const [loading, setLoading] = useState(true)
     const [confetti, setConfetti] = useState(false)
+    const login = useContext(loginContext)
     const location = useLocation()
+    const navigate = useNavigate()
     const name = location.pathname.split('/')[1]
     const handleClick = async () => {
+        if(!login.value) return navigate('/login')
         createCarnet(name).then(res => {
             if(res) {
                 fetchCarnet(name).then(res => {
@@ -30,12 +36,16 @@ export default function StreamerCard() {
         })
     }
     useEffect(() => {
+        if(!login.value) {
+            setLoading(false)
+            return
+        }
         fetchCarnet(name).then(res => {
             console.log(res)
             if(res) setCarnet(res)
             setLoading(false)
         });
-    }, [name])
+    }, [name, login])
     return(
         <div id="CardPageContainer">
         {!loading &&

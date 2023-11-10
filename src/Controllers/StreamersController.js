@@ -38,3 +38,14 @@ export const getStreamers = async (req, res, next) => {
 		next(error)
 	}
 }
+
+export const getStreamer = async (req, res, next) => {
+	const {channelname} = req.params
+	try {
+		const streamer = await Streamer.getStreamerByName(channelname)
+		if(!streamer) return res.status(404).send("Streamer no encontrado")
+		return res.status(200).json(streamer)
+	} catch (error) {
+		next(error)
+	}
+}
