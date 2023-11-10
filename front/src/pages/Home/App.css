@@ -3,6 +3,8 @@
     justify-content: end;
     padding: 20px;
     width: 100%;
+    position: relative;
+    z-index: 1;
 }
 #MenuContainer a {
     border: 1px solid transparent;
@@ -17,6 +19,7 @@ a {
     color: inherit;
 }
 #LoginFillContainer {
+    position: relative;
     display: flex;
     flex-grow: 1;
 }
