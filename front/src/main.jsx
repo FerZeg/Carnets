@@ -18,6 +18,7 @@ import Layout from './Layout.jsx';
 import CarnetContainer from './components/CarnetContainer/CarnetContainer.jsx';
 import { CarnetMenu } from './pages/StreamerCard/CarnetMenu.jsx';
 import Login from './pages/Login/LoginPage.jsx';
+import OptionsPage from './pages/OptionsPage/OptionsPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       { path: 'carnets', element: <CarnetContainer/> },
       { path: 'streamers' , element: <StreamersPage/> },
       { path: 'login', element: <Login/> },
+      { path: 'options', element: <OptionsPage/>},
       {
         path: ":id",
         element: <CarnetMenu/>,

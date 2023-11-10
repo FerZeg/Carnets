@@ -20,6 +20,9 @@ export default function AccountMenu() {
   const navigate = useNavigate()
   const authContextValue = useContext(loginContext)
   const open = Boolean(anchorEl);
+  const handleOptions = () => {
+    navigate('/options')
+  }
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -94,7 +97,7 @@ export default function AccountMenu() {
           </MenuItem>
             */}
         {authContextValue.value &&
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={handleOptions}>
             <ListItemIcon>
               <Settings fontSize="small" />
             </ListItemIcon>
