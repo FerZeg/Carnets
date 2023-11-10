@@ -16,18 +16,14 @@ export default function CarnetContainer() {
     return (
         <>
         <div id="CarnetContainer">
-        <h1 className="Title">CARNETS</h1>
+        <h1 className="Title" style={{textAlign: 'center'}}>CARNETS</h1>
             {carnets.length > 0 &&
-                <div id="MultiCarnetContainer">
+                <div className="MultiContainer">
                 {carnets.map(carnet => (
                     <Link to={`/${carnet.streamer.name}`}  key={carnet._id}>
-                    <div className="CarnetBox">
-                        <section>
-                            <img src={carnet.streamer.profile_url} alt="streamer img" />
-                        </section>
-                        <section>
-                            <h2>{carnet.streamer.name}</h2>
-                        </section>
+                    <div className="CardBox">
+                        <h2>{carnet.streamer.name}</h2>
+                        <img src={carnet.streamer.profile_url} alt="streamer img" />
                     </div>
                     </Link>
                 ))} 

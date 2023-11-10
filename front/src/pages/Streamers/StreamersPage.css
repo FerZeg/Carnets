@@ -1,4 +1,4 @@
-#StreamerContainer {
+.MultiContainer {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     justify-content: center;
@@ -7,7 +7,7 @@
     max-width: 70%;
     margin: 0 auto;
 }
-#StreamerContainer .StreamerBox {
+.CardBox {
     border: 1px solid black;
     display: flex;
     justify-content: left;
@@ -19,24 +19,24 @@
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     transition: 0.3s;
 }
-#StreamerContainer .StreamerBox:hover {
+.CardBox:hover {
     cursor: pointer;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 }
-#StreamerContainer .StreamerBox img {
+.CardBox img {
     width: 70px;
     border-radius: 6px;
 }
 
 
 @media screen and (min-width: 1000px) {
-    #StreamerContainer { 
+    .MultiContainer { 
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 @media screen and (min-width: 1500px) {
-    #StreamerContainer {
+    .MultiContainer {
         grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 }
