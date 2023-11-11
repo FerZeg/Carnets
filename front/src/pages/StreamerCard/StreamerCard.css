@@ -88,26 +88,34 @@
     transform: translate(-50%, 0);
     z-index: 10;
 }
+.rankingnumber {
+    padding-left: 10px;
+    margin: 0;
+}
 #RankingContainer {
     display: flex;
     flex-direction: column;
     padding: 20px;
     gap: 5px;
-    max-width: 80%;
-    width: 500px;
+    min-width: 360px;
+    width: 20%;
     margin: 0 auto;
+    overflow: hidden;
 }
 #RankingContainer .rankuser {
     flex-grow: 1;
     border: 1px solid black;
-    padding: 3px;
     border-radius: 6px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     display: flex;
+    align-items: center;
     gap: 20px;
+    width: 100%;
+
 }
 #RankingContainer .rankuser img {
-    width: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 6px;
 
 }
@@ -125,5 +133,8 @@
     .AtroposCarnet {
         width: 350px;
         height: 233px;
+    }
+    #RankingContainer .rankuser {
+        gap: 5px;
     }
 }

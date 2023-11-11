@@ -19,12 +19,14 @@ export default function Ranking() {
                 ranking.map((carnet, i) => {
                     return (
                         <div className='allrankedcontainer' key={i}>
-                            <span className="Title">{i + 1}</span>
                             <div className="rankuser">
+                                <span className="Title rankingnumber">{i + 1}</span>
                                 <img src={carnet.user.profile_url} alt="" />
                                 <div className="rankuserdata">
-                                    <p>{carnet.user.name}</p>
-                                    <p>Puntos: {carnet.points}</p>
+                                    <div>
+                                        <p>{carnet.user.name}</p>
+                                        <p>Puntos: {carnet.points}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
