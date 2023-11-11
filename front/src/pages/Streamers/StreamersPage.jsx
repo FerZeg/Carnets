@@ -20,11 +20,9 @@ export default function StreamersPage() {
             <div className="MultiContainer">
             {!loading && streamers.length > 0 && (
                 streamers.map(streamer => (
-                    <Link to={"/" + streamer.display_name} key={streamer._id}>
-                        <div className="CardBox">
+                    <Link to={"/" + streamer.display_name} key={streamer._id} className='CardBox'>
                             <h2>{streamer.display_name}</h2>
                             <img src={streamer.profile_image_url} alt="streamer img" />
-                        </div>
                     </Link>
                 ))
             )}
