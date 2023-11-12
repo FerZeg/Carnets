@@ -1,5 +1,8 @@
+import { BadRequestError } from "../Errors.js"
 import UserModel from "../Models/UserModel.js"
 const TwitchApiURL = "https://api.twitch.tv/helix"
+import { updateReward } from "../Models/RewardModel.js"
+import CarnetModel from "../Models/CarnetModel.js"
 
 export const getUserDataBearer =  async (bearer) => {
 	const response = await fetch(TwitchApiURL + "/users", {
@@ -82,5 +85,121 @@ export const tryRefreshTokens = async (access_token, user_id) => {
 	}
 }
 
+export const createSpecialReward = async (streamer, reward, type) => {
+	const user = await UserModel.getUserById(streamer.id)
+	const options = (() => {
+		switch(type) {
+		case "special": 
+			return {max_per_stream: reward.max, is_max_per_stream_enabled: true}
+		case "perStream":
+			return {max_per_user_per_stream: reward.max, is_max_per_user_per_stream_enabled: true}
+		}
+	})()
+	console.log(options)
+	const URL = TwitchApiURL + "/channel_points/custom_rewards" + "?broadcaster_id=" + user.twitch_id
+	const response = await fetch(URL, {
+		method: "POST",
+		headers: {
+			"Authorization": "Bearer " + user.access_token,
+			"client-id": process.env.CLIENT_ID,
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify({
+			title: reward.title,
+			cost: reward.cost,
+			prompt: reward.prompt,
+			is_enabled: true,
+			...options,
+		})
+	})
+
+	if(!response.ok) throw new BadRequestError("Error al crear la recompensa")
+
+	const data = await response.json()
+	console.log(data)
+	await updateReward(streamer.id, type, {id: data.data[0].id})
+}
+export const getRedemptions = async (streamer, reward) => {
+	console.log("Actualizando streamer " + streamer.display_name)
+	console.log("La recompensa es " + reward.id)
+	let cursor
+	let allRedemptions = []
+
+	do {
+		const params = new URLSearchParams({
+			broadcaster_id: streamer.twitch_id,
+			reward_id: reward.id,
+			status: "UNFULFILLED",
+			first: 50, // Get the maximum number of redemptions per page
+		})
+
+		if (cursor) {
+			params.append("after", cursor) // Get the next page of results
+		}
+
+		const URL = `${TwitchApiURL}/channel_points/custom_rewards/redemptions?${params}`
+		const response = await fetch(URL, {
+			headers: {
+				"Authorization": `Bearer ${streamer.access_token}`,
+				"client-id": process.env.CLIENT_ID,
+			}
+		})
+
+		const data = await response.json()
+
+		if (!response.ok) throw new BadRequestError("Error al obtener las redenciones")
+
+		allRedemptions = allRedemptions.concat(data.data)
+		cursor = data.pagination.cursor // Get the cursor for the next page of results
+	} while (cursor)
+
+	// Fulfill the redemptions in batches
+	for (let i = 0; i < allRedemptions.length; i += 50) {
+		const batch = allRedemptions.slice(i, i + 50)
+		try {
+			await fulfillRedemption(streamer, batch, reward) // Fulfill the redemptions
+			await new Promise(resolve => setTimeout(resolve, 1000)) // Wait for 1 second
+		} catch (error) {
+			console.error(`Error fulfilling redemptions: ${error.message}`)
+		}
+	}
+}
+
+export const fulfillRedemption = async (streamer, redemptions, reward) => {
+	const params = new URLSearchParams({
+		broadcaster_id: streamer.twitch_id,
+		reward_id: reward.id,
+	})
+
+	for (const redemption of redemptions) {
+		params.append("id", redemption.id)
+	}
+
+	const URL = `${TwitchApiURL}/channel_points/custom_rewards/redemptions?` + params
+	const response = await fetch(URL, {
+		method: "PATCH",
+		headers: {
+			"Authorization": `Bearer ${streamer.access_token}`,
+			"client-id": process.env.CLIENT_ID,
+			"Content-Type": "application/json",
+		},
+		body: JSON.stringify({
+			status: "FULFILLED",
+		}),
+	})
+	const data = await response.json()
+	data.data.forEach(async redemption => {
+		console.log(`Redemption fulfilled: ${redemption.user_name}`)
+		const user = await UserModel.getUserByTwitchId(redemption.user_id)
+		if(!user) return
+		const carnet = await CarnetModel.getByUserAndChannel(user._id, streamer._id)
+		if(!carnet) return
+		if(!carnet.points) carnet.points = 0
+		carnet.points += Math.floor(redemption.reward.cost / 100)
+		CarnetModel.update(carnet._id, carnet)
+	})
+
+	console.log("Redenciones cumplidas")
+}
 
 export default {getUserDataBearer, getOauthToken, isUserFollowingChannel, validateToken, tryRefreshTokens}

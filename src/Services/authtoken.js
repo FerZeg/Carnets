@@ -9,7 +9,8 @@ const TIME = 60 * 60 * 24 * 7 // 1 week in seconds
 export const createAuthToken = (user) => {
 	// TO DO - Create a JWT token with the user id as payload not _id
 	const payload =   {
-		id: user._id.toString(),
+		id: user._id,
+		type: user.type
 	}
 	const token = jsonwebtoken.sign({payload}, process.env.JWT_SECRET || "secret", {
 		expiresIn: TIME

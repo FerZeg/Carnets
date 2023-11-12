@@ -13,10 +13,8 @@ export const createUser = async (user) => {
 		}
 		return { insertedCount: 0, data: check }
 	}
-	const lastId = await userCollection.find().sort({ id: -1 }).limit(1).toArray()
-	if(lastId.length === 0) lastId.push({id: 0})
-	const result = await userCollection.insertOne({ ...user, id: lastId[0].id + 1 })
-	return { insertedCount: 1, data: { ...user, id: lastId[0].id + 1, _id: result.insertedId }}
+	const result = await userCollection.insertOne(user)
+	return { insertedCount: 1, data: { ...user, _id: result.insertedId }}
 }
 export const deleteUser =  async (id) => {
 	const result = await userCollection.deleteOne({ _id: new ObjectId(id) })
@@ -30,6 +28,7 @@ export const getUsers = async (max = 25, n = 1) => {
 	return await userCollection.find({}).skip(n).limit(max).toArray()
 }
 export const getUserById = async (id) => {
+	console.log("El id pasado es ", id)
 	const user = await userCollection.findOne({ _id: new ObjectId(id) })
 	if (!user) {
 		throw new NotFoundError("No se encontró ningún usuario con ese ID")
