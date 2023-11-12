@@ -14,7 +14,11 @@ const Streamer = {
 	getStreamers: async (max = 25, n = 0) => {
 		if(max > 25) throw new BadRequestError("No se pueden mostrar más de 25 streamers")
 		return await streamerCollection.find({type: "streamer"}).project({id: 1, display_name: 1, twitch_type: 1, profile_image_url: 1  }).skip(n * max).limit(max).toArray()
+	},
+	getStreamersWithRewards: async () => {
+		return await streamerCollection.find({type: "streamer", rewards: {$exists: true}}).toArray()
 	}
+
 }
 
 export default Streamer

@@ -24,3 +24,10 @@ export const getUserDataWithToken = async (req, res, next) => {
 		next(error)
 	}
 }
+
+export const verifyUserType = (type) => {
+	return (req, res, next) => {
+		if(req.user.type === type) return next()
+		return res.status(401).send("Error, no tiene permisos para realizar esta acción")
+	}
+}
