@@ -1,5 +1,5 @@
 import { BadRequestError } from "../Errors.js"
-import { createSpecialReward } from "../Services/twitchapi.js"
+import { createSpecialReward } from "../Services/twitchcontroller.js"
 
 const defaultValues = {
 	special: {

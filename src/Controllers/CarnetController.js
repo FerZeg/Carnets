@@ -1,7 +1,7 @@
 import CarnetModel from "../Models/CarnetModel.js"
 import UserModel from "../Models/UserModel.js"
 import { BadRequestError, NotFoundError } from "../Errors.js"
-import TwitchApi from "../Services/twitchapi.js"
+import TwitchApi from "../Services/twitchcontroller.js"
 import User from "../Models/UserModel.js"
 import { extractCarnetData } from "../Services/carnet.js"
 

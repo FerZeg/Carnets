@@ -122,7 +122,6 @@
 #RankingContainer .rankuser .rankuserdata {
     flex-grow: 1;
     display: flex;
-    justify-content: space-around;
     align-items: center;
 
 }
