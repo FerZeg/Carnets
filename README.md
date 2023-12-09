@@ -5,3 +5,4 @@ Some basic commands are:
 ```
 npm run dev -- Frontend
 npm run node -- src
+```
