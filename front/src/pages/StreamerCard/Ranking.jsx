@@ -6,7 +6,7 @@ export default function Ranking() {
     const [loading, setLoading] = useState(true)
     const location = useLocation()
     const name = location.pathname.split('/')[1]
-    const [ranking, setRanking] = useState([])
+    const [ranking, setRanking] = useState({channel: {}, ranking: []})
     useEffect(() => {
         fetchRanking(name).then(res => {
             if(res) setRanking(res)
@@ -15,8 +15,8 @@ export default function Ranking() {
     }, [name])
     return (
         <div id="RankingContainer">
-            {!loading && ranking.length > 0 && 
-                ranking.map((carnet, i) => {
+            {!loading && ranking.ranking.length > 0 && 
+                ranking.ranking.map((carnet, i) => {
                     return (
                         <div className='allrankedcontainer' key={i}>
                             <div className="rankuser">
