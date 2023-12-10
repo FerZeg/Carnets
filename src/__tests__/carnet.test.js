@@ -15,6 +15,10 @@ describe("GET /ranking/:channelname", () => {
 		 await request(app)
 			.get(`/api/ranking/${channelName}`)
 			.expect(200)
+			.then((response) => {
+				expect(response.body.length).toBeGreaterThan(0)
+				expect(response.body[0].streamer.name).toBe("channelName")
+			})
 		
 	})
 
@@ -25,7 +29,11 @@ describe("GET /ranking/:channelname", () => {
 		await request(app)
 			.get(`/api/ranking/${channelName}?limit=${limit}`)
 			.expect(200)
+			.then((response) => {
+				expect(response.body.length).toBe(limit)
+			})
 	})
+
 
 	it("should return 404 if the channel does not exist", async () => {
 		const nonExistentChannel = "nonExistentChannel" // Replace with a non-existent channel name

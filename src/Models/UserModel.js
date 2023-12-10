@@ -25,7 +25,7 @@ export const deleteUser =  async (id) => {
 }
 export const getUsers = async (max = 25, n = 1) => {
 	if(max > 25) throw new BadRequestError("No se pueden mostrar más de 25 usuarios")
-	return await userCollection.find({}).skip(n).limit(max).toArray()
+	return await userCollection.find({}).skip(n).limit(parseInt(max)).toArray()
 }
 export const getUserById = async (id) => {
 	const user = await userCollection.findOne({ _id: new ObjectId(id) })
@@ -43,10 +43,7 @@ export const getUserByTwitchName = async (display_name) => {
 
 export const updateUser =  async (id, user) => {
 	const result = await userCollection.updateOne({ _id: new ObjectId(id) }, { $set: user })
-	if (result.modifiedCount === 0) {
-		return false
-	}
-	return true
+	return result.modifiedCount === 0
 }
 export const changeUserType =  async (id, type) => {
 	const result = await userCollection.findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { type } })

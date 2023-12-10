@@ -27,7 +27,8 @@ export const twitchCallback = async (req, res, next) => {
 			created_at: new Date(),
 			updated_at: new Date(),
 			scope: response.scope,
-			type: ""
+			type: "",
+			status: "active",
 		})
 		const tokenCreated = createAuthToken(user.data)
 		return res.redirect(`http://localhost:5173/success?token=${tokenCreated}`)
