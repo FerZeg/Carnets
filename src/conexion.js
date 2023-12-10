@@ -9,6 +9,14 @@ async function connect() {
 		console.log("Error conectando a la base de datos", error)
 	}
 }
+export async function disconnect() {
+	try {
+		return await client.close()
+	} catch (error) {
+		console.log("Error desconectando de la base de datos", error)
+	}
+}
+
 client.on("connectionFailed", () => {
 	console.log("Conexión fallida")
 })
