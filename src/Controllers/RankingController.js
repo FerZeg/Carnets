@@ -11,6 +11,7 @@ import { extractCarnetData } from "../Services/carnet.js"
 export const getRanking = async (req, res, next) =>{
 	try {
 		const channelname = req.params.channelname
+		console.log(channelname)
 		const { offset, limit } = req.query
 		const channel = await Streamer.getStreamerByName(channelname)
 		if(!channel) throw new NotFoundError("Streamer not found")

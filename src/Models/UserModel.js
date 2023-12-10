@@ -28,11 +28,7 @@ export const getUsers = async (max = 25, n = 1) => {
 	return await userCollection.find({}).skip(n).limit(max).toArray()
 }
 export const getUserById = async (id) => {
-	console.log("El id pasado es ", id)
 	const user = await userCollection.findOne({ _id: new ObjectId(id) })
-	if (!user) {
-		throw new NotFoundError("No se encontró ningún usuario con ese ID")
-	}
 	// eslint-disable-next-line no-unused-vars
 	//BUG
 	//const { password, login, access_token, refresh_token, scope, ...safeUser } = user
