@@ -21,7 +21,7 @@ export function CarnetMenu() {
         <>
             {!loading && streamer &&
             <>
-            <h1 className="Title2" style={{textAlign: "center"}}>{streamer.display_name}</h1>
+            <h1 className="Title" style={{textAlign: "center"}}>{streamer.display_name}</h1>
             <nav id='CarnetMenu'>
                 <ul>
                     <li><Link to="" className={lastPart !== "ranking" ? "active" : ""}>Carnet</Link></li>

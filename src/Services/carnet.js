@@ -6,6 +6,7 @@ export const extractCarnetData = async (carnets) => {
 		const streamer = await UserModel.getUserById(carnet.channel_id)
 		const user = await UserModel.getUserById(carnet.user_id)
 		if(!streamer) return undefined
+		if(!user) return undefined
 		carnet.streamer = {
 			name: streamer.display_name,
 			profile_url: streamer.profile_image_url
