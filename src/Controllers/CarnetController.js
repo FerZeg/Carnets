@@ -36,9 +36,11 @@ export async function getCarnets(req, res, next) {
 		const id = req.user.id
 		const carnet = await CarnetModel.getByUserId(id)
 		if(!carnet) throw new NotFoundError("No se ha encontrado ningún carnet")
-		const user = User.getUserById(id)
-		const result = extractUserCarnetsData(carnet)
-		return res.status(200).json(Promise.all([user, result]))
+		const [user, carnets] = await Promise.all([User.getUserById(id), extractUserCarnetsData(carnet)])
+		return res.status(200).json({
+			user,
+			carnets
+		})
 	} catch(err) {
 		next(err)
 	}

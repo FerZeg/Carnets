@@ -5,21 +5,22 @@ import Login from "../../pages/Login/LoginPage"
 import { loginContext } from "../../lib/context"
 
 export default function CarnetContainer() {
-    const [carnets, setCarnets] = useState([])
+    const [carnets, setCarnets] = useState({user: {}, carnets: []})
     const login = useContext(loginContext)
     useEffect(() => {
         if(!login.value) return
         fetchCarnets().then(data => {
             setCarnets(data)
+            console.log(data)
         })
     }, [login])
     return (
         <>
         <div id="CarnetContainer">
         <h1 className="Title" style={{textAlign: 'center'}}>CARNETS</h1>
-            {carnets.length > 0 &&
+            {carnets.carnets.length > 0 &&
                 <div className="MultiContainer">
-                {carnets.map(carnet => (
+                {carnets.carnets.map(carnet => (
                     <Link to={`/${carnet.streamer.name}`}  key={carnet._id}>
                     <div className="CardBox">
                         <h2>{carnet.streamer.name}</h2>
