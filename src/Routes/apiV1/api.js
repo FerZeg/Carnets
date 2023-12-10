@@ -28,6 +28,7 @@ router.use((err, req, res, next) => {
 		return res.status(400).send({error_type: err.name, message: err.message, reasons: err.reasons})
 	}
 	console.log(err.message)
+	console.log(err)
 	return res.status(500).send({message: "Ha ocurrido un error en el servidor"})
 })
 export default router

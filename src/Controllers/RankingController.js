@@ -1,7 +1,7 @@
 import { NotFoundError } from "../Errors.js"
 import RankingModel from "../Models/RankingModel.js"
 import Streamer from "../Models/StreamerModel.js"
-import { extractCarnetData } from "../Services/carnet.js"
+import { extractCarnetsFromStreamer } from "../Services/carnet.js"
 
 /**
  * Get the ranking of a specific streamer by channel name
@@ -15,7 +15,7 @@ export const getRanking = async (req, res, next) =>{
 		const channel = await Streamer.getStreamerByName(channelname)
 		if(!channel) throw new NotFoundError("Streamer not found")
 		const ranking = await RankingModel.getStreamerRanking(channel, offset, limit)
-		return res.status(200).json(await extractCarnetData(ranking))
+		return res.status(200).json({channel, ranking: await extractCarnetsFromStreamer(ranking)})
 	} catch (err) {
 		next(err)
 	}
