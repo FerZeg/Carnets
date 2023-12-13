@@ -79,7 +79,7 @@ export const createCarnet = async (channelname) => {
             Authorization: `Bearer ${localStorage.getItem("jwt")}`
         }
     })
-    return response.ok
+    return response
 
 }
 

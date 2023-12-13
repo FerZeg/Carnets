@@ -1,5 +1,5 @@
 import {MongoClient} from "mongodb"
-const client = new MongoClient(process.env.DB_URL)
+const client = new MongoClient("mongodb://localhost:27017")
 const db = client.db("Carnets")
 async function connect() {
 	try {
@@ -22,6 +22,7 @@ client.on("connectionFailed", () => {
 })
 client.on("connectionReconnecting", () => {
 	console.log("Conexión reconectando")
+	
 })
 client.on("connectionReconnected", () => {
 	console.log("Conexión reconectada")
