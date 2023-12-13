@@ -4,6 +4,7 @@ import { loginContext } from "./lib/context";
 import { fetchUserData } from "./lib/fetchers";
 import "./index.css";
 import { Outlet } from "react-router-dom";
+import { Toaster } from 'sonner'
 
 export default function Layout() {
     let [ loading, setLoading ] = useState(true)
@@ -22,12 +23,13 @@ export default function Layout() {
     return (
         <>
         <loginContext.Provider value={login}>
-            {!loading &&
-            <>
-                <Header />
-                <Outlet />
-            </>
-            }
+          <Toaster/>
+              {!loading &&
+              <>
+                  <Header />
+                  <Outlet />
+              </>
+              }
         </loginContext.Provider>
         </>
     );

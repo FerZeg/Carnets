@@ -9,6 +9,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import { useContext } from 'react'
 import { loginContext } from '../../lib/context'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 
 function BackgroundPattern() {
     return (
@@ -26,15 +27,25 @@ export default function StreamerCard() {
     const name = location.pathname.split('/')[1]
     const handleClick = async () => {
         if(!login.value) return navigate('/login')
-        createCarnet(name).then(res => {
-            if(res) {
+        createCarnet(name).then(async res => {
+            const response = await res.json()
+            if(res.ok) {
                 fetchCarnet(name).then(res => {
                     setCarnet(res)
                     setConfetti(true)
                 })
+            } else if(response.reasons.includes('NotFollowing')) {
+                toast.error('Debes seguir al streamer para crear el carnet', {
+                    duration: 3000,
+                    style: {
+                        backgroundColor: '#ff0000',
+                        color: '#fff'
+                    }
+                })
             }
-        })
-    }
+                })
+            }
+    
     useEffect(() => {
         if(!login.value) {
             setLoading(false)
