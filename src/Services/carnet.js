@@ -9,6 +9,11 @@ export const extractUserCarnetsData = async (carnets) => {
 			name: streamer.display_name,
 			profile_url: streamer.profile_image_url
 		}
+		carnet._id = undefined
+		carnet.user_id = undefined
+		carnet.channel_id = undefined
+
+		
 		return carnet 
 	})
 
@@ -22,6 +27,9 @@ export const extractCarnetsFromStreamer = async (carnets) => {
 			name: user.display_name,
 			profile_url: user.profile_image_url
 		}
+		carnet._id = undefined
+		carnet.user_id = undefined
+		carnet.channel_id = undefined
 		return carnet 
 	})
 	return Promise.all(promises)

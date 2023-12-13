@@ -9,8 +9,8 @@ export async function createCarnet(req, res, next) {
 	const id = req.user.id
 	if(!req.params.channelname) return res.status(400).send("Falta el canal")
 	try {
-		const user = await User.getUserById(id)
-		const streamer = await UserModel.getUserByTwitchName(req.params.channelname)
+		const user = await User.getUserById(id, {sanetized: false})
+		const streamer = await UserModel.getUserByTwitchName(req.params.channelname, {sanetized: false})
 		if(id == streamer._id) {
 			console.log("Carnet creado del mismo usuario")
 			await CarnetModel.create(id, streamer._id, "twitch")
@@ -50,20 +50,22 @@ export async function getCarnet(req, res, next) {
 	try {
 		const id = req.user.id
 		const channelname = req.params.channelname
-		const streamer = await UserModel.getUserByTwitchName(channelname)
+		const streamer = await UserModel.getUserByTwitchName(channelname, {sanetized: false})
 		if(!streamer) throw new BadRequestError("No existe ese canal")
 		const carnet = await CarnetModel.getByUserAndChannel(id, streamer._id)
+		carnet._id = undefined
+		carnet.channel_id = undefined
+		carnet.user_id = undefined
 		const user = await User.getUserById(id)
 		if(!carnet) throw new NotFoundError("No se ha encontrado ningún carnet")
 		return res.status(200).json({
 			carnet, 
 			streamer: {
-				id: streamer._id, twitch_id: streamer.twitch_id, display_name: streamer.display_name, profile_image_url: streamer.profile_image_url
+				display_name: streamer.display_name, profile_image_url: streamer.profile_image_url
 			},
 			user: {
-				id: user.display_name,
+				display_name: user.display_name,
 				profile_image_url: user.profile_image_url,
-				twitch_id: user.twitch_id,
 				display_name: user.display_name
 			}
 		})
