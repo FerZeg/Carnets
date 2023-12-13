@@ -3,7 +3,7 @@ import fs from "fs"
 import Streamer from "../Models/StreamerModel.js"
 const streamerValidation = JSON.parse(fs.readFileSync("streamers.json", "utf8"))
 
-export const upgradeUserToStramer = async (req, res, next) => { 
+export const upgradeUserToStreamer = async (req, res, next) => { 
 	try {
 		const user = await User.getUserById(req.user.id)
 		if(!streamerValidation.names.includes(user.display_name)) throw new Error("No puedes ser streamer")

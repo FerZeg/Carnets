@@ -8,7 +8,7 @@ export const twitchCallback = async (req, res, next) => {
 		const response = await TwitchApi.getOauthToken(req.query.code)
 		const userData = await TwitchApi.getUserDataBearer(response.access_token)
 		const data = userData.data[0]
-		const userExist = await User.getUserByTwitchId(data.id)
+		const userExist = await User.getUserByTwitchId(data.id, {sanetized: false})
 		if(userExist) {
 			const tokenCreated = createAuthToken(userExist)
 			return res.redirect(`http://localhost:5173/success?token=${tokenCreated}`)

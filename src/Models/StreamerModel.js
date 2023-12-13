@@ -3,7 +3,7 @@ import {db} from "../conexion.js"
 const streamerCollection = db.collection("users")
 
 const defaultValues = {
-	display_name: 1, twitch_type: 1, profile_image_url: 1, twitch_description: 1
+	display_name: 1, twitch_type: 1, profile_image_url: 1, twitch_description: 1, type: 1
 }
 
 const Streamer = {

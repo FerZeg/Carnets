@@ -2,6 +2,9 @@ import { BadRequestError, NotFoundError } from "../Errors.js"
 import { db } from "../conexion.js"
 import { ObjectId } from "mongodb"
 const userCollection = db.collection("users")
+const defaultValues = {
+	display_name: 1, twitch_type: 1, profile_image_url: 1, twitch_description: 1, type: 1, _id: 0
+}
 export const createUser = async (user) => {
 	const check = await userCollection.findOne({ twitch_id: user.twitch_id })
 	if (check) {
@@ -23,22 +26,22 @@ export const deleteUser =  async (id) => {
 	}
 	return result
 }
-export const getUsers = async (max = 25, n = 1) => {
+export const getUsers = async (max = 25, n = 1, options = {sanetized: true}) => {
 	if(max > 25) throw new BadRequestError("No se pueden mostrar más de 25 usuarios")
-	return await userCollection.find({status:"active"}).skip(n).limit(parseInt(max)).toArray()
+	return await userCollection.find({status:"active"}).project(options.sanetized ? defaultValues : {}).skip(n).limit(parseInt(max)).toArray()
 }
-export const getUserById = async (id) => {
-	const user = await userCollection.findOne({ _id: new ObjectId(id), status: "active" })
+export const getUserById = async (id, options = {sanetized: true}) => {
+	const user = await userCollection.findOne({ _id: new ObjectId(id), status: "active" }, { projection: options.sanetized ? defaultValues : {} })
 	// eslint-disable-next-line no-unused-vars
 	//BUG
 	//const { password, login, access_token, refresh_token, scope, ...safeUser } = user
 	return user
 }
-export const getUserByTwitchId = async (twitch_id) => {
-	return await userCollection.findOne({ twitch_id })
+export const getUserByTwitchId = async (twitch_id, options = {sanetized: true}) => {
+	return await userCollection.findOne({ twitch_id }, { projection: options.sanetized ? defaultValues : {} })
 }
-export const getUserByTwitchName = async (display_name) => {
-	return await userCollection.findOne({ display_name})
+export const getUserByTwitchName = async (display_name, options = {sanetized: true}) => {
+	return await userCollection.findOne({ display_name}, { projection: options.sanetized ? defaultValues : {} })
 }
 
 export const updateUser =  async (id, user) => {
