@@ -25,10 +25,10 @@ export const deleteUser =  async (id) => {
 }
 export const getUsers = async (max = 25, n = 1) => {
 	if(max > 25) throw new BadRequestError("No se pueden mostrar más de 25 usuarios")
-	return await userCollection.find({}).skip(n).limit(parseInt(max)).toArray()
+	return await userCollection.find({status:"active"}).skip(n).limit(parseInt(max)).toArray()
 }
 export const getUserById = async (id) => {
-	const user = await userCollection.findOne({ _id: new ObjectId(id) })
+	const user = await userCollection.findOne({ _id: new ObjectId(id), status: "active" })
 	// eslint-disable-next-line no-unused-vars
 	//BUG
 	//const { password, login, access_token, refresh_token, scope, ...safeUser } = user

@@ -13,15 +13,9 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
-
-app.use(express.static("public"))
 app.get("/", (req, res) => {
 	res.sendFile("index.html", {root: "./public/"})
 })
-
-
-
-
 app.use("/api", apiRouter)
 
 const server = app.listen(PORT, () => {
