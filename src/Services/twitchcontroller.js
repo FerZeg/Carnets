@@ -78,7 +78,8 @@ export const tryRefreshTokens = async (access_token, user_id) => {
 	const resp = await validateToken(access_token)
 	const finalId = user_id
 	if(!resp.ok) {
-		const user = await UserModel.getUserById(finalId)
+		const user = await UserModel.getUserById(finalId, {sanetized: false})
+		console.log(user)
 		const resp = await refreshToken(user.refresh_token)
 		UserModel.updateUser(user_id, {access_token: resp.access_token, refresh_token: resp.refresh_token})
 		return resp

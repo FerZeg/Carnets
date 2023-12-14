@@ -21,7 +21,7 @@ export default function CarnetContainer() {
             {carnets.carnets.length > 0 &&
                 <div className="MultiContainer">
                 {carnets.carnets.map(carnet => (
-                    <Link to={`/${carnet.streamer.name}`}  key={carnet._id}>
+                    <Link to={`/${carnet.streamer.name}`}  key={carnet.streamer.name}>
                     <div className="CardBox">
                         <h2>{carnet.streamer.name}</h2>
                         <img src={carnet.streamer.profile_url} alt="streamer img" />
