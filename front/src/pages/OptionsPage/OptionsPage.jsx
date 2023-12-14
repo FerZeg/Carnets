@@ -29,32 +29,31 @@ export default function OptionsPage() {
             <h1 className="Title" style={{textAlign: 'center'}}>OPCIONES</h1>
             <section className="OptionsContainer">
                 <div className="Option">
-                    <h2>Cambiar a streamer</h2>
-                    <p>Temporalmente solo unos pocos.</p>
-                    <div className="SwitchContainer">
-                        <input type="checkbox" className="checkbox" name='streamer' id='streamercheck'/>
-                        <label className="switch" htmlFor="streamercheck">
-                            <span className="slider"></span>
-                        </label>
-                    </div>
+                    <section className='OptionDescription'>
+                        <h2>Cambiar a Streamer</h2>
+                        <p>Temporalmente solo unos pocos</p>
+                    </section>
+                    <section className='OptionExecuter'>
+                        <button>CAMBIAR</button>
+                    </section>
                 </div>
                 <div className="Option">
-                    <h2>Borrar cuenta</h2>
-                    <p>Esta acción no se puede deshacer.</p>
-                    <button className="DeleteAccount">BORRAR CUENTA</button>
+                    <section className='OptionDescription'>
+                        <h2>Borrar cuenta</h2>
+                        <p>Esta acción no se puede deshacer.</p>
+                    </section>
+                    <section className='OptionExecuter'>
+                        <button className="DeleteAccount">BORRAR CUENTA</button>
+                    </section>
                 </div>
                 <div className="Option">
-                    <h2>Modo oscuro</h2>
-                    <p>No disponible aún</p>
-                    <DarkModeSwitch/>
-                </div>
-                <div className="Option">
-                    <h2>Cambiar idioma</h2>
-                    <p>No disponible aún</p>
-                    <select name="language" id="language">
-                        <option value="es">Español</option>
-                        <option value="en">English</option>
-                    </select>
+                    <section className='OptionDescription'>
+                        <h2>Modo oscuro</h2>
+                        <p>No disponible aún</p>
+                    </section>
+                    <section className='OptionExecuter'>
+                        <DarkModeSwitch/>
+                    </section>
                 </div>
             </section>
             <section className="OptionsContainer">

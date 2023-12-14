@@ -9,6 +9,29 @@
     background-color: #F2F2F7;
 }
 
+.Option {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
+  max-width: 700px;
+  width: 100%;
+}
+.OptionDescription {
+  text-align: center;
+}
+.OptionExecuter {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.OptionExecuter button {
+  padding: 5px;
+}
+.OptionExecuter .DeleteAccount {
+  background-color: #FF3B30;
+  color: #FFFFFF;
+  border-radius: 5px;
+  border: none;
+}
 .SwitchContainer {
     width: 51px;
     height: 31px;

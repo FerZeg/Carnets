@@ -53,11 +53,11 @@ export async function getCarnet(req, res, next) {
 		const streamer = await UserModel.getUserByTwitchName(channelname, {sanetized: false})
 		if(!streamer) throw new BadRequestError("No existe ese canal")
 		const carnet = await CarnetModel.getByUserAndChannel(id, streamer._id)
+		if(!carnet) throw new NotFoundError("No se ha encontrado ningún carnet")
 		carnet._id = undefined
 		carnet.channel_id = undefined
 		carnet.user_id = undefined
 		const user = await User.getUserById(id)
-		if(!carnet) throw new NotFoundError("No se ha encontrado ningún carnet")
 		return res.status(200).json({
 			carnet, 
 			streamer: {
