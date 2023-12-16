@@ -1,5 +1,5 @@
-import LogButton from '../../components/LogButton/LogButton.jsx'
-import TwitchIcon from '../../components/TwitchIcon.jsx'
+import LogButton from '../../components/Buttons/LogButton/LogButton'
+import TwitchIcon from '../../components/TwitchIcon'
 
 export default function Login() {
     return (

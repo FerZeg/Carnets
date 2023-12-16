@@ -1,8 +1,8 @@
+import "./index.css";
 import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import { loginContext } from "./lib/context";
 import { fetchUserData } from "./lib/fetchers";
-import "./index.css";
 import { Outlet } from "react-router-dom";
 import { Toaster } from 'sonner'
 
@@ -12,6 +12,7 @@ export default function Layout() {
       value: false,
       data: null
     })
+
     useEffect(() => {
         document.title = "Carnets"
         ;(async() => {
@@ -20,8 +21,8 @@ export default function Layout() {
           setLoading(false)
         })()
       }, [])
+      
     return (
-        <>
         <loginContext.Provider value={login}>
           <Toaster/>
               {!loading &&
@@ -31,6 +32,5 @@ export default function Layout() {
               </>
               }
         </loginContext.Provider>
-        </>
     );
 }

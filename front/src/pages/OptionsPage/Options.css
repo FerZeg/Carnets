@@ -7,37 +7,21 @@
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #F2F2F7;
+    gap: 10px;
 }
 
 .Option {
   display: grid;
   grid-template-columns: 1.5fr 0.5fr;
-  max-width: 700px;
-  width: 100%;
+  max-width: 500px;
+  width: 90%;
 }
 .OptionDescription {
-  text-align: center;
 }
 .OptionExecuter {
   display: flex;
   justify-content: start;
   align-items: center;
-}
-.OptionExecuter .change{
-  background-color: #3BFF30;
-  color: #FFFFFF;
-  border-radius: 5px;
-  border: none;
-}
-.OptionExecuter button {
-  padding: 5px;
-  font-weight: 700;
-}
-.OptionExecuter .DeleteAccount {
-  background-color: #FF3B30;
-  color: #FFFFFF;
-  border-radius: 5px;
-  border: none;
 }
 .SwitchContainer {
     width: 51px;

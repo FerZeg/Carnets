@@ -11,6 +11,7 @@
         - Puntos necesarios
 */
 import './Options.css'
+import { ActionButton } from '../../components/Buttons/ActionButton/ActionButton'
 import { useContext, useEffect } from "react"
 import { loginContext } from "../../lib/context"
 import { useNavigate } from "react-router-dom"
@@ -34,7 +35,7 @@ export default function OptionsPage() {
                         <p>Temporalmente solo unos pocos</p>
                     </section>
                     <section className='OptionExecuter'>
-                        <button className='change'>CAMBIAR</button>
+                        <ActionButton style={{ backgroundColor: '#00FF00' }}>SER STREAMER</ActionButton>
                     </section>
                 </div>
                 <div className="Option">
@@ -43,7 +44,7 @@ export default function OptionsPage() {
                         <p>Esta acción no se puede deshacer.</p>
                     </section>
                     <section className='OptionExecuter'>
-                        <button className="DeleteAccount">BORRAR CUENTA</button>
+                        <ActionButton style={{ backgroundColor: '#FF0000' }}>BORRAR CUENTA</ActionButton>
                     </section>
                 </div>
                 <div className="Option">
