@@ -9,8 +9,8 @@ import '@fontsource/roboto/700.css';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Error404 from './pages/Error404/404.jsx'
 import Page500 from './pages/Error500/Page500.jsx';
-import { Success } from './Success.jsx';
-import { Logout } from './Logout.jsx';
+import { Success } from './routing/Success.jsx';
+import { Logout } from './routing/Logout.jsx';
 import StreamersPage from './pages/Streamers/StreamersPage.jsx';
 import Carnet from './pages/StreamerCard/Carnet.jsx';
 import Ranking from './pages/StreamerCard/Ranking.jsx';
@@ -62,9 +62,6 @@ const router = createBrowserRouter([
     element: <Page500/>,
   },
 ]);
-
-
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
