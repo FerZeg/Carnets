@@ -3,7 +3,7 @@ import User from "../Models/UserModel.js"
 import { createAuthToken } from "../Services/authtoken.js"
 
 
-export const twitchCallback = async (req, res, next) => {
+export const twitchCallback = async (req, res) => {
 	try{
 		const response = await TwitchApi.getOauthToken(req.query.code)
 		const userData = await TwitchApi.getUserDataBearer(response.access_token)
@@ -33,6 +33,6 @@ export const twitchCallback = async (req, res, next) => {
 		const tokenCreated = createAuthToken(user.data)
 		return res.redirect(`http://localhost:5173/success?token=${tokenCreated}`)
 	} catch (error) {
-		next(error)
+		return res.redirect("http://localhost:5173/error")
 	}
 }
