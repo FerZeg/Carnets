@@ -1,6 +1,6 @@
 import './DarkModeSwitch.css'
 
-export default function DarkModeSwitch() {
+export function DarkModeSwitch() {
     return (
         <label className="theme-switch">
             <input type="checkbox" className="theme-switch__checkbox"/>
