@@ -13,7 +13,7 @@ describe("GET /ranking/:channelname", () => {
 	it("should return the ranking for the specified channel", async () => {
 		const channelName = "JapanJordi" // Replace with the desired channel name
 
-		 await request(app)
+		await request(app)
 			.get(`/api/ranking/${channelName}`)
 			.expect(200)
 			.then((response) => {
@@ -49,9 +49,9 @@ describe("GET /ranking/:channelname", () => {
 	})
 })
 describe("refresh twitch tokens", () => {
-    it("should return 200 if the tokens are refreshed", async () => {
-        const response = await refreshToken("l5mktof02hnrbik4c3p1p25uxt3t2lrlegwelk1c28k1hlixox")
+	it("should return 200 if the tokens are refreshed", async () => {
+		const response = await refreshToken("l5mktof02hnrbik4c3p1p25uxt3t2lrlegwelk1c28k1hlixox")
 		expect(response.access_token).toBeDefined()
         
-    })
+	})
 })

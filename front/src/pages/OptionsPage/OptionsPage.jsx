@@ -34,7 +34,7 @@ export default function OptionsPage() {
                         <p>Temporalmente solo unos pocos</p>
                     </section>
                     <section className='OptionExecuter'>
-                        <button>CAMBIAR</button>
+                        <button className='change'>CAMBIAR</button>
                     </section>
                 </div>
                 <div className="Option">
