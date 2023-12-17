@@ -21,7 +21,7 @@ export default function StreamerCard() {
     const [carnet, setCarnet] = useState(null)
     const [loading, setLoading] = useState(true)
     const [confetti, setConfetti] = useState(false)
-    const login = useContext(loginContext)
+    const { login } = useContext(loginContext)
     const location = useLocation()
     const navigate = useNavigate()
     const name = location.pathname.split('/')[1]

@@ -23,7 +23,7 @@ export default function Layout() {
       }, [])
       
     return (
-        <loginContext.Provider value={login}>
+        <loginContext.Provider value={{login, setLogin}}>
           <Toaster/>
               {!loading &&
               <>
