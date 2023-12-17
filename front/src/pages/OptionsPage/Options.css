@@ -7,16 +7,17 @@
     padding-top: 20px;
     padding-bottom: 20px;
     background-color: #F2F2F7;
-    gap: 10px;
+    gap: 1rem;
 }
 
-.Option {
+.OptionsContainer .Option {
   display: grid;
   grid-template-columns: 1.5fr 0.5fr;
   max-width: 500px;
   width: 90%;
 }
-.OptionExecuter {
+
+.OptionsContainer .Option .OptionExecuter {
   display: flex;
   justify-content: start;
   align-items: center;

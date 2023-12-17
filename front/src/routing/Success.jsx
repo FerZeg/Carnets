@@ -13,6 +13,6 @@ export function Success() {
         }
     }, [location.search, navigate]);
     return (
-        <div>Success!</div>
+        <></>
     );
 }

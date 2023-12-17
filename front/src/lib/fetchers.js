@@ -14,26 +14,24 @@ export const fetchCarnets = async () => {
     } catch(e) {
         return null
     }
-    return null
 }
 export const fetchUserData = async () => {
     try {
-    if(!localStorage.getItem("jwt")) return null
-    const response = await fetch(`http://localhost:3000/api/auth/data`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${localStorage.getItem("jwt")}`
-      }
-    })
-    if(response.ok) {
-      const data = await response.json()
-      return data
-    }
+        if(!localStorage.getItem("jwt")) return null
+        const response = await fetch(`http://localhost:3000/api/auth/data`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("jwt")}`
+        }
+        })
+        if(response.ok) {
+        const data = await response.json()
+        return data
+        }
     } catch(e) {
-      return null
+        return null
     }
-    return null
 }
 export const fetchStreamers = async () => {
     try {
@@ -50,7 +48,6 @@ export const fetchStreamers = async () => {
     } catch(e) {
         return null
     }
-    return null
 }
 
 export const fetchCarnet = async (channelname) => {
@@ -69,7 +66,6 @@ export const fetchCarnet = async (channelname) => {
     } catch(e) {
         return null
     }
-    return null
 }
 
 export const createCarnet = async (channelname) => {
@@ -97,7 +93,6 @@ export const fetchRanking = async (channelname) => {
     } catch(e) {
         return null
     }
-    return null
 }
 
 export const fetchStreamer = async (channelname) => {
@@ -114,5 +109,4 @@ export const fetchStreamer = async (channelname) => {
     } catch(e) {
         return null
     }
-    return null
 }
