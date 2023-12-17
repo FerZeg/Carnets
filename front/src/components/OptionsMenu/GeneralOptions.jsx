@@ -1,7 +1,26 @@
 import { ActionButton } from "../Buttons/ActionButton/ActionButton"
 import { DarkModeSwitch } from "../DarkModeSwitch/DarkModeSwitch"
+import { useContext } from "react"
+import { loginContext } from "../../lib/context"
+import { changeToStreamer } from "../../lib/actions"
+import { toast } from 'sonner'
+
 
 const GeneralOptions = () => {
+    const login = useContext(loginContext)
+    const onClickStreamer = () => {
+        if(login.data && login.data.type === 'streamer') {
+            toast.info('Ya eres streamer', {
+                style: {
+                    backgroundColor: '#ff0000',
+                    color: '#fff'
+                }
+            })
+            return
+        }
+            changeToStreamer()
+    }
+
     return (
         <section className="OptionsContainer">
                 <div className="Option">
@@ -10,7 +29,7 @@ const GeneralOptions = () => {
                         <p>Temporalmente solo unos pocos</p>
                     </section>
                     <section className='OptionExecuter'>
-                        <ActionButton className="change">SER STREAMER</ActionButton>
+                        <ActionButton className="change" onClick={onClickStreamer}>SER STREAMER</ActionButton>
                     </section>
                 </div>
                 <div className="Option">

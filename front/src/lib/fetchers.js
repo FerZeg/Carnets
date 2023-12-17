@@ -1,6 +1,8 @@
+const URL = "http://localhost:3000/api"
+
 export const fetchCarnets = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/carnet`, {
+        const response = await fetch(`${URL}/carnet`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -18,7 +20,7 @@ export const fetchCarnets = async () => {
 export const fetchUserData = async () => {
     try {
         if(!localStorage.getItem("jwt")) return null
-        const response = await fetch(`http://localhost:3000/api/auth/data`, {
+        const response = await fetch(`${URL}/auth/data`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
@@ -35,7 +37,7 @@ export const fetchUserData = async () => {
 }
 export const fetchStreamers = async () => {
     try {
-        const response = await fetch(`http://localhost:3000/api/streamer`, {
+        const response = await fetch(`${URL}/streamer`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -52,7 +54,7 @@ export const fetchStreamers = async () => {
 
 export const fetchCarnet = async (channelname) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/carnet/${channelname}`, {
+        const response = await fetch(`${URL}/carnet/${channelname}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("jwt")}`
             } 
@@ -69,7 +71,7 @@ export const fetchCarnet = async (channelname) => {
 }
 
 export const createCarnet = async (channelname) => {
-    const response = await fetch(`http://localhost:3000/api/carnet/${channelname}`, {
+    const response = await fetch(`${URL}/carnet/${channelname}`, {
         method: "POST",
         headers: {
             Authorization: `Bearer ${localStorage.getItem("jwt")}`
@@ -81,7 +83,7 @@ export const createCarnet = async (channelname) => {
 
 export const fetchRanking = async (channelname) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/ranking/${channelname}`, {
+        const response = await fetch(`${URL}/ranking/${channelname}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("jwt")}`
             }
@@ -97,7 +99,7 @@ export const fetchRanking = async (channelname) => {
 
 export const fetchStreamer = async (channelname) => {
     try {
-        const response = await fetch(`http://localhost:3000/api/streamer/${channelname}`, {
+        const response = await fetch(`${URL}/streamer/${channelname}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("jwt")}`
             }
