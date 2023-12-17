@@ -6,7 +6,7 @@ import { GeneralOptions } from "../../components/OptionsMenu/GeneralOptions"
 import { StreamerOptions } from "../../components/OptionsMenu/StreamerOptions"
 
 export default function OptionsPage() {
-    const login = useContext(loginContext)
+    const { login } = useContext(loginContext)
     const navigate = useNavigate()
     console.log(login)
     useEffect(() => {

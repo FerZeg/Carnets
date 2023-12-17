@@ -4,21 +4,37 @@ import { useContext } from "react"
 import { loginContext } from "../../lib/context"
 import { changeToStreamer } from "../../lib/actions"
 import { toast } from 'sonner'
+import { colors_scheme } from "../../consts"
 
 
 const GeneralOptions = () => {
-    const login = useContext(loginContext)
-    const onClickStreamer = () => {
+    const { login, setLogin } = useContext(loginContext)
+    const onClickStreamer = async () => {
         if(login.data && login.data.type === 'streamer') {
             toast.info('Ya eres streamer', {
                 style: {
-                    backgroundColor: '#ff0000',
+                    backgroundColor: colors_scheme.error,
                     color: '#fff'
                 }
             })
             return
         }
-            changeToStreamer()
+        const response = await changeToStreamer()
+        if(response.status === 200) {
+            setLogin({...login, data: {...login.data, type: 'streamer'}})
+            toast.success('Ahora eres streamer', {
+                style: {
+                    backgroundColor: colors_scheme.success,
+                    color: '#fff'
+                }
+            })
+        } else if(response.status === 401) {
+            toast.error('No estás en la lista de streamers', {
+                style: {
+                    backgroundColor: colors_scheme.error,
+                    color: '#fff'
+                }})
+        }
     }
 
     return (

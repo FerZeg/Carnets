@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 export default function AccountMenu() {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate()
-  const authContextValue = useContext(loginContext)
+  const { login } = useContext(loginContext)
   const open = Boolean(anchorEl);
   const handleOptions = () => {
     navigate('/options')
@@ -47,8 +47,8 @@ export default function AccountMenu() {
             aria-expanded={open ? 'true' : undefined}
           >
             <Avatar src={
-            authContextValue.value 
-              ? authContextValue.data.profile_image_url
+            login.value 
+              ? login.data.profile_image_url
               : "/default.png"
             } sx={{ width: 32, height: 32}}>M</Avatar>
           </IconButton>
@@ -96,7 +96,7 @@ export default function AccountMenu() {
               }/> Perfil
           </MenuItem>
             */}
-        {authContextValue.value &&
+        {login.value &&
           <MenuItem onClick={handleOptions}>
             <ListItemIcon>
               <Settings fontSize="small" />
@@ -109,7 +109,7 @@ export default function AccountMenu() {
           <ListItemIcon>
             <Logout fontSize="small"/>
           </ListItemIcon>
-          {authContextValue.value ? "Cerrar Sesión" : "Iniciar Sesión"}
+          {login.value ? "Cerrar Sesión" : "Iniciar Sesión"}
         </MenuItem>
       </Menu>
     </>

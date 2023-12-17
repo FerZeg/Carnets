@@ -6,7 +6,7 @@ import { loginContext } from "../../lib/context"
 
 export default function CarnetContainer() {
     const [carnets, setCarnets] = useState({user: {}, carnets: []})
-    const login = useContext(loginContext)
+    const { login } = useContext(loginContext)
     useEffect(() => {
         if(!login.value) return
         fetchCarnets().then(data => {
