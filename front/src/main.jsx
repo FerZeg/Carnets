@@ -41,26 +41,11 @@ const router = createBrowserRouter([
       }
     ]
   },
-  {
-    path: "success",
-    element: <Success/>,
-  },
-  {
-    path: "logout",
-    element: <Logout/>,
-  },
-  {
-    path: "404",
-    element: <Error404 />,
-  },
-  {
-    path: "500",
-    element: <Page500/>,
-  },
-  {
-    path: "error",
-    element: <Page500/>,
-  },
+  { path: "success", element: <Success/> },
+  { path: "logout", element: <Logout/> },
+  { path: "404", element: <Error404 /> },
+  { path: "500", element: <Page500/> },
+  { path: "error", element: <Page500/> },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

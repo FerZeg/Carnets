@@ -7,5 +7,5 @@ export function Logout() {
         localStorage.removeItem('jwt');
         navigate('/login');
     });
-    return (<div>Logout</div>);
+    return (<>Logout</>);
 }

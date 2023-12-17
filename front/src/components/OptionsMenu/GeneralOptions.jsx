@@ -10,7 +10,7 @@ const GeneralOptions = () => {
                         <p>Temporalmente solo unos pocos</p>
                     </section>
                     <section className='OptionExecuter'>
-                        <ActionButton style={{ backgroundColor: '#00FF00' }}>SER STREAMER</ActionButton>
+                        <ActionButton className="change">SER STREAMER</ActionButton>
                     </section>
                 </div>
                 <div className="Option">
@@ -19,7 +19,7 @@ const GeneralOptions = () => {
                         <p>Esta acción no se puede deshacer.</p>
                     </section>
                     <section className='OptionExecuter'>
-                        <ActionButton style={{ backgroundColor: '#FF0000' }}>BORRAR CUENTA</ActionButton>
+                        <ActionButton className="delete">BORRAR CUENTA</ActionButton>
                     </section>
                 </div>
                 <div className="Option">
