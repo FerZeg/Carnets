@@ -19,8 +19,11 @@
 
 .OptionsContainer .Option .OptionExecuter {
   display: flex;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
+}
+.OptionDescription {
+  text-align: center;
 }
 .SwitchContainer {
     width: 51px;

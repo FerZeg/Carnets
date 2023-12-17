@@ -6,7 +6,7 @@ const router = Router()
 
 router.get("/:channelname", getStreamer)
 router.get("/", getStreamers)
-router.post("/upgrade", upgradeUserToStreamer)
+router.post("/upgrade", verifyAuthTokenMiddleware, upgradeUserToStreamer)
 router.post("/downgrade", verifyAuthTokenMiddleware, donwngradeToUser)
 
 export default router

@@ -13,12 +13,16 @@ export default function OptionsPage() {
         if (!login.value) {
             navigate('/login')
         }
-    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [login])
     return (
         <>
             <h1 className="Title" style={{textAlign: 'center'}}>OPCIONES</h1>
             <GeneralOptions/>
-            <StreamerOptions/>
+            {
+                login.value && login.data.type === 'streamer' && 
+                <StreamerOptions/>
+            }
         </>
 
     )

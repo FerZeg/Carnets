@@ -9,7 +9,7 @@ export const upgradeUserToStreamer = async (req, res, next) => {
 		if(!streamerValidation.names.includes(user.display_name)) throw new Error("No puedes ser streamer")
 		const id = req.user.id
 		await User.changeUserType(id, "streamer")
-		return res.status(200).send("Streamer actualizado")
+		res.status(200).json({result: "Streamer actualizado"})
 	} catch (error) {
 		next(error)
 	}
@@ -18,7 +18,7 @@ export const donwngradeToUser = async (req, res, next) => {
 	try {
 		const id = req.user.id
 		await User.changeUserType(id, "user")
-		return res.status(200).send("Streamer actualizado")
+		res.status(200).json({result: "Streamer actualizado"})
 	} catch (error) {
 		next(error)
 	}
