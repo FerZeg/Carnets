@@ -9,6 +9,10 @@ carnetCollection.createIndex(indexKeys, indexOptions)
 
 // Carnet {channel_id{}, user_id{}, id, date, observations, status, type, color, points, _id}
 const Carnet = {
+	deleteUserCarnets: async (user_id, options = {}) => {
+		const result = await carnetCollection.deleteMany({ user_id: new ObjectId(user_id) }, options.session)
+		return result
+	},
 	create: async (user_id, channel_id, platform) => {
 		try {
 			const result = await carnetCollection.insertOne({

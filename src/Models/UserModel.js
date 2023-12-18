@@ -19,8 +19,8 @@ export const createUser = async (user) => {
 	const result = await userCollection.insertOne(user)
 	return { insertedCount: 1, data: { ...user, _id: result.insertedId }}
 }
-export const deleteUser =  async (id) => {
-	const result = await userCollection.deleteOne({ _id: new ObjectId(id) })
+export const deleteUser =  async (id, options = {}) => {
+	const result = await userCollection.deleteOne({ _id: new ObjectId(id) }, options.session)
 	if (result.deletedCount === 0) {
 		throw new NotFoundError("No se encontró ningún usuario con ese ID")
 	}
