@@ -2,11 +2,11 @@ import User from "../../Models/UserModel.js"
 import fs from "fs"
 import Streamer from "../../Models/StreamerModel.js"
 import { UnauthorizedError } from "../../Errors.js"
-const streamerValidation = JSON.parse(fs.readFileSync("streamers.json", "utf8"))
 
 export const upgradeUserToStreamer = async (req, res, next) => { 
 	try {
 		const user = await User.getUserById(req.user.id)
+		const streamerValidation = JSON.parse(fs.readFileSync("streamers.json", "utf8"))
 		if(!streamerValidation.names.includes(user.display_name)) 
 			throw new UnauthorizedError("No tienes permiso", ["NoListedStreamer"])
 		const id = req.user.id
