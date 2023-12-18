@@ -12,3 +12,16 @@ export const changeToStreamer = async () => {
         return null
     }
 }
+
+export const deleteAccount = async () => {
+    try {
+        return await fetch(`${URL}/user`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("jwt")}`
+            } 
+        })
+    } catch(e) {
+        return null
+    }
+}
