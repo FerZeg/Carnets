@@ -1,6 +1,6 @@
-import { extractBearerToken, verifyAuthToken } from "../Services/authtoken.js"
+import { extractBearerToken, verifyAuthToken } from "../../Services/authtoken.js"
 
-import UserModel from "../Models/UserModel.js"
+import UserModel from "../../Models/UserModel.js"
 
 export const verifyAuthTokenMiddleware = async (req, res, next) => {
 	const token = extractBearerToken(req)

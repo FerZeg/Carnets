@@ -1,6 +1,6 @@
 import { Router } from "express"
-import { verifyAuthTokenMiddleware } from "../../Controllers/AuthTokensController.js"
-import { donwngradeToUser, getStreamers, upgradeUserToStreamer, getStreamer } from "../../Controllers/StreamersController.js"
+import { verifyAuthTokenMiddleware } from "../../Controllers/apiV1/AuthTokensController.js"
+import { donwngradeToUser, getStreamers, upgradeUserToStreamer, getStreamer } from "../../Controllers/apiV1/StreamersController.js"
 
 const router = Router()
 

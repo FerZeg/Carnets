@@ -1,6 +1,6 @@
 import {Router} from "express"
-import { verifyAuthTokenMiddleware, verifyUserType } from "../../Controllers/AuthTokensController.js"
-import { specialRewardMiddleware } from "../../Controllers/RewardController.js"
+import { verifyAuthTokenMiddleware, verifyUserType } from "../../Controllers/apiV1/AuthTokensController.js"
+import { specialRewardMiddleware } from "../../Controllers/apiV1/RewardController.js"
 
 const router = Router()
 

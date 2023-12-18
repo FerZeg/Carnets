@@ -1,7 +1,7 @@
-import { NotFoundError } from "../Errors.js"
-import RankingModel from "../Models/RankingModel.js"
-import Streamer from "../Models/StreamerModel.js"
-import { extractCarnetsFromStreamer } from "../Services/carnet.js"
+import { NotFoundError } from "../../Errors.js"
+import RankingModel from "../../Models/RankingModel.js"
+import Streamer from "../../Models/StreamerModel.js"
+import { extractCarnetsFromStreamer } from "../../Services/carnet.js"
 
 /**
  * Get the ranking of a specific streamer by channel name
