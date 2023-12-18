@@ -1,5 +1,5 @@
 import { Router} from "express"
-import { twitchCallback } from "../../Controllers/CallbackController.js"
+import { twitchCallback } from "../../Controllers/apiV1/CallbackController.js"
 
 const router = Router()
 

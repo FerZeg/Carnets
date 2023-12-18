@@ -1,5 +1,5 @@
 import StreamerModel from "../Models/StreamerModel.js"
-import { processRedemptions } from "../Services/twitchcontroller.js"
+import { processRedemptions } from "./twitchcontroller.js"
 
 export async function updatePoints() {
 	const streamers = await StreamerModel.getStreamersWithRewards()

@@ -1,6 +1,6 @@
-import TwitchApi from "../Services/twitchcontroller.js"
-import User from "../Models/UserModel.js"
-import { createAuthToken } from "../Services/authtoken.js"
+import TwitchApi from "../../Services/twitchcontroller.js"
+import User from "../../Models/UserModel.js"
+import { createAuthToken } from "../../Services/authtoken.js"
 
 
 export const twitchCallback = async (req, res) => {

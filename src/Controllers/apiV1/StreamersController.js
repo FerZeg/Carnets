@@ -1,7 +1,7 @@
-import User from "../Models/UserModel.js"
+import User from "../../Models/UserModel.js"
 import fs from "fs"
-import Streamer from "../Models/StreamerModel.js"
-import { UnauthorizedError } from "../Errors.js"
+import Streamer from "../../Models/StreamerModel.js"
+import { UnauthorizedError } from "../../Errors.js"
 const streamerValidation = JSON.parse(fs.readFileSync("streamers.json", "utf8"))
 
 export const upgradeUserToStreamer = async (req, res, next) => { 

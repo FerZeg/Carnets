@@ -1,9 +1,9 @@
-import CarnetModel from "../Models/CarnetModel.js"
-import UserModel from "../Models/UserModel.js"
-import { BadRequestError, NotFoundError } from "../Errors.js"
-import TwitchApi from "../Services/twitchcontroller.js"
-import User from "../Models/UserModel.js"
-import { extractUserCarnetsData } from "../Services/carnet.js"
+import CarnetModel from "../../Models/CarnetModel.js"
+import UserModel from "../../Models/UserModel.js"
+import { BadRequestError, NotFoundError } from "../../Errors.js"
+import TwitchApi from "../../Services/twitchcontroller.js"
+import User from "../../Models/UserModel.js"
+import { extractUserCarnetsData } from "../../Services/carnet.js"
 
 export async function createCarnet(req, res, next) {
 	const id = req.user.id
@@ -66,7 +66,6 @@ export async function getCarnet(req, res, next) {
 			user: {
 				display_name: user.display_name,
 				profile_image_url: user.profile_image_url,
-				display_name: user.display_name
 			}
 		})
 	} catch(err) {
