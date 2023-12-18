@@ -5,10 +5,15 @@ import { loginContext } from "../../lib/context"
 import { changeToStreamer } from "../../lib/actions"
 import { toast } from 'sonner'
 import { colors_scheme } from "../../consts"
-
+import Modal from '@mui/material/Modal';
+import { useState } from "react"
+import { DeleteModal } from "../Modal/DeleteModal"
 
 const GeneralOptions = () => {
+    const [open, setOpen] = useState(false)
+    const handleStatus = () => setOpen((prev) => !prev)
     const { login, setLogin } = useContext(loginContext)
+
     const onClickStreamer = async () => {
         if(login.data && login.data.type === 'streamer') {
             toast.info('Ya eres streamer', {
@@ -39,6 +44,9 @@ const GeneralOptions = () => {
 
     return (
         <section className="OptionsContainer">
+            <Modal open={open} onClose={handleStatus}>
+                <DeleteModal />
+            </Modal>
                 <div className="Option">
                     <section className='OptionDescription'>
                         <h2>Cambiar a Streamer</h2>
@@ -54,7 +62,7 @@ const GeneralOptions = () => {
                         <p>Esta acción no se puede deshacer.</p>
                     </section>
                     <section className='OptionExecuter'>
-                        <ActionButton className="delete">BORRAR CUENTA</ActionButton>
+                        <ActionButton className="delete" onClick={handleStatus}>BORRAR CUENTA</ActionButton>
                     </section>
                 </div>
                 <div className="Option">
