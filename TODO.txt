@@ -2,3 +2,4 @@
 // Weekly, Monthly Rankings
 // Delete from ranking removed user
 // Remove from ranking inactive user
+// net fail, show message
