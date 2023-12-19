@@ -10,7 +10,11 @@ const Carnet = {
 		const result = await carnetCollection.deleteMany({ user_id: new ObjectId(user_id) }, options.session)
 		return result
 	},
-	create: async (user_id, channel_id, platform) => {
+	deleteStreamerCarnets: async (channel_id, options = {}) => {
+		const result = await carnetCollection.deleteMany({ channel_id: new ObjectId(channel_id) }, options.session)
+		return result
+	},
+	create: async (user_id, channel_id) => {
 		try {
 			const result = await carnetCollection.insertOne({
 				user_id: new ObjectId(user_id),
@@ -22,7 +26,6 @@ const Carnet = {
 				points: 0,
 				created_at: new Date(),
 				updated_at: new Date(),
-				platform
 			})
 			return result
 		} catch(err) {
