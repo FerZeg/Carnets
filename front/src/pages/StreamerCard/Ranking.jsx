@@ -21,10 +21,10 @@ export default function Ranking() {
                         <div className='allrankedcontainer' key={i}>
                             <div className="rankuser">
                                 <span className="Title rankingnumber">{i + 1}</span>
-                                <img src={carnet.user.profile_url} alt="" />
+                                <img src={carnet.user.profile_image_url} alt="" />
                                 <div className="rankuserdata">
                                     <div>
-                                        <p>{carnet.user.name}</p>
+                                        <p>{carnet.user.display_name}</p>
                                         <p>Puntos: {carnet.points}</p>
                                     </div>
                                 </div>

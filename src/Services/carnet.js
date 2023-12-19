@@ -19,19 +19,3 @@ export const extractUserCarnetsData = async (carnets) => {
 
 	return Promise.all(promises)
 }
-export const extractCarnetsFromStreamer = async (carnets) => {
-	const promises = carnets.map(async (carnet) => {
-		const user = await UserModel.getUserById(carnet.user_id)
-		if(!user) return undefined
-		carnet.user = {
-			name: user.display_name,
-			profile_url: user.profile_image_url
-		}
-		carnet._id = undefined
-		carnet.user_id = undefined
-		carnet.channel_id = undefined
-		return carnet 
-	})
-	return Promise.all(promises)
-	
-}

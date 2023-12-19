@@ -55,7 +55,8 @@ export const DeleteModal = forwardRef(() => {
             style={{
                 marginTop: '10px', 
                 transition: 'all 1s', 
-                backgroundColor: isButtonDisabled ? colors_scheme.disabled : colors_scheme.error
+                backgroundColor: isButtonDisabled ? colors_scheme.disabled : colors_scheme.error,
+                cursor: isButtonDisabled ? 'not-allowed' : 'pointer'
             }} 
             onClick={onClickDelete}
         >
