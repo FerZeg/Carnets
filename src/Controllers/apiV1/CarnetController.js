@@ -13,13 +13,13 @@ export async function createCarnet(req, res, next) {
 		const streamer = await UserModel.getUserByTwitchName(req.params.channelname, {sanetized: false})
 		if(id == streamer._id) {
 			console.log("Carnet creado del mismo usuario")
-			await CarnetModel.create(id, streamer._id, "twitch")
+			await CarnetModel.create(id, streamer._id)
 			return res.status(200).json("Creado correctamente")
 		}
 		if(!streamer) throw new NotFoundError("No existe ese canal", ["InvalidChannel"])
 		const isFollowing = await TwitchApi.isUserFollowingChannel(user.access_token, user, streamer.twitch_id)
 		if(!isFollowing) throw new BadRequestError("No sigues a este canal", ["NotFollowing"])
-		await CarnetModel.create(req.user.id, streamer._id, "twitch")
+		await CarnetModel.create(req.user.id, streamer._id)
 		return res.status(200).json("Creado correctamente")
 	} catch(err) {
 		next(err)

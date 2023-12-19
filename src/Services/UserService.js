@@ -8,6 +8,7 @@ export const deleteUserAndCards = async (userId) => {
 	try {
 		await deleteUser(userId, { session })
 		await Carnet.deleteUserCarnets(userId, { session })
+		await Carnet.deleteStreamerCarnets(userId, { session })
 		await session.commitTransaction()
 	} catch (error) {
 		await session.abortTransaction()
