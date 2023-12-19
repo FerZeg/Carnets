@@ -1,4 +1,4 @@
-// If user is removed from streamer condition, don't show carnets
+// If user is removed from streamer condition, don't show carnets -- DONE
 // Weekly, Monthly Rankings
 // Delete from ranking removed user
 // Remove from ranking inactive user
