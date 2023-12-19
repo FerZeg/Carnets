@@ -3,9 +3,6 @@ import { ObjectId } from "mongodb"
 import { BadRequestError } from "../Errors.js"
 
 const carnetCollection = db.collection("carnet")
-const indexKeys = { user_id: 1, channel_id: 1, platform: 1 }
-const indexOptions = { unique: true }
-carnetCollection.createIndex(indexKeys, indexOptions)
 
 // Carnet {channel_id{}, user_id{}, id, date, observations, status, type, color, points, _id}
 const Carnet = {
