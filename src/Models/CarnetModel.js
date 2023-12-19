@@ -35,12 +35,31 @@ const Carnet = {
 		}
 	},
 	getByUserId: async (user_id) => {
-		try {
-			const result = await carnetCollection.find({ user_id: new ObjectId(user_id) }).toArray()
-			return result
-		} catch(err) {
-			throw new Error("Error al obtener los carnets")
-		}
+		return await carnetCollection.aggregate([
+			{ $match: { user_id: new ObjectId(user_id) } },
+			{
+				$lookup: {
+					from: "users",
+					localField: "user_id",
+					foreignField: "_id",
+					as: "streamer"
+				}
+			},
+			{ $unwind: "$streamer" },
+			{
+				$project: {
+					points: 1,
+					type: 1,
+					observations: 1,
+					created_at: 1,
+					color: 1,
+					streamer: {
+						display_name: 1,
+						profile_image_url: 1,
+					}
+				}
+			}
+		]).project({_id: 0, "streamer._id": 0}).toArray()
 	},
 	getById: async (_id) => {
 		const result = await carnetCollection.findOne({ _id })

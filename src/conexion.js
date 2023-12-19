@@ -47,7 +47,7 @@ const createIndexes = () => {
 		{ key: { user_id: 1, channel_id: 1 } },
 		{ key: { status: 1 } }
 	]
-	const cardCollection = db.collection("cards") // Assuming your cards are stored in a "cards" collection
+	const cardCollection = db.collection("carnet") // Assuming your cards are stored in a "cards" collection
 	cardCollection.createIndexes(cardIndexes)
 		.then(() => console.log("Card indexes created successfully"))
 		.catch(error => console.error("Error creating card indexes:", error))

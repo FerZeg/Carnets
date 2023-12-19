@@ -10,8 +10,8 @@ export default function CarnetContainer() {
     useEffect(() => {
         if(!login.value) return
         fetchCarnets().then(data => {
-            setCarnets(data)
-            console.log(data)
+            if(data.carnets && data.carnets.length > 0)
+                setCarnets(data)
         })
     }, [login])
     return (
@@ -21,10 +21,10 @@ export default function CarnetContainer() {
             {carnets.carnets.length > 0 &&
                 <div className="MultiContainer">
                 {carnets.carnets.map(carnet => (
-                    <Link to={`/${carnet.streamer.name}`}  key={carnet.streamer.name}>
+                    <Link to={`/${carnet.streamer.display_name}`}  key={carnet.streamer.display_name}>
                     <div className="CardBox">
-                        <h2>{carnet.streamer.name}</h2>
-                        <img src={carnet.streamer.profile_url} alt="streamer img" />
+                        <h2>{carnet.streamer.display_name}</h2>
+                        <img src={carnet.streamer.profile_image_url} alt="streamer img" />
                     </div>
                     </Link>
                 ))} 

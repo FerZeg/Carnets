@@ -3,7 +3,6 @@ import UserModel from "../../Models/UserModel.js"
 import { BadRequestError, NotFoundError } from "../../Errors.js"
 import TwitchApi from "../../Services/twitchcontroller.js"
 import User from "../../Models/UserModel.js"
-import { extractUserCarnetsData } from "../../Services/carnet.js"
 
 export async function createCarnet(req, res, next) {
 	const id = req.user.id
@@ -34,12 +33,10 @@ export async function createCarnet(req, res, next) {
 export async function getCarnets(req, res, next) {
 	try {
 		const id = req.user.id
-		const carnet = await CarnetModel.getByUserId(id)
-		if(!carnet) throw new NotFoundError("No se ha encontrado ningún carnet")
-		const [user, carnets] = await Promise.all([User.getUserById(id), extractUserCarnetsData(carnet)])
+		const [user, carnets] = await Promise.all([User.getUserById(id), CarnetModel.getByUserId(id)])
 		return res.status(200).json({
 			user,
-			carnets
+			carnets,
 		})
 	} catch(err) {
 		next(err)
