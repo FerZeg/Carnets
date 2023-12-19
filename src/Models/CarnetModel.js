@@ -46,6 +46,7 @@ const Carnet = {
 				}
 			},
 			{ $unwind: "$streamer" },
+			{ $match: { "streamer.status": "active", "streamer.type": "streamer" } },
 			{
 				$project: {
 					points: 1,
