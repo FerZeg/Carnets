@@ -1,5 +1,5 @@
 import {MongoClient} from "mongodb"
-const client = new MongoClient(process.env.MONGO_URI2)
+const client = new MongoClient(process.env.MONGO_URI)
 const db = client.db("Carnets")
 async function connect() {
 	try {
