@@ -44,12 +44,13 @@ const GeneralOptions = () => {
 
     return (
         <section className="OptionsContainer">
+            <h2 style={{fontSize:"1.5rem"}}>GENERAL</h2>
             <Modal open={open} onClose={handleStatus}>
                 <DeleteModal />
             </Modal>
                 <div className="Option">
                     <section className='OptionDescription'>
-                        <h2>Cambiar a Streamer</h2>
+                        <h3>Cambiar a Streamer</h3>
                         <p>Temporalmente solo unos pocos</p>
                     </section>
                     <section className='OptionExecuter'>
@@ -58,7 +59,7 @@ const GeneralOptions = () => {
                 </div>
                 <div className="Option">
                     <section className='OptionDescription'>
-                        <h2>Borrar cuenta</h2>
+                        <h3>Borrar cuenta</h3>
                         <p>Esta acción no se puede deshacer.</p>
                     </section>
                     <section className='OptionExecuter'>
@@ -67,7 +68,7 @@ const GeneralOptions = () => {
                 </div>
                 <div className="Option">
                     <section className='OptionDescription'>
-                        <h2>Modo oscuro</h2>
+                        <h3>Modo oscuro</h3>
                         <p>No disponible aún</p>
                     </section>
                     <section className='OptionExecuter'>
