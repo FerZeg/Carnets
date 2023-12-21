@@ -15,13 +15,12 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
 app.use("/api", apiRouter)
 
+connect()
+
 let server 
-if(process.env.NODE_ENV === "development"){
-	server = app.listen(PORT, () => {
-		console.log(`Aplicación iniciada en el puerto ${PORT}!`)
-		connect()
-	})
-}
+server = app.listen(PORT, () => {
+	console.log(`Aplicación iniciada en el puerto ${PORT}!`)
+})
 	
 
 export default server
