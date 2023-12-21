@@ -1,4 +1,4 @@
-const URL = "http://localhost:3000/api"
+const URL = import.meta.env.API_URL
 
 export const fetchCarnets = async () => {
     try {
