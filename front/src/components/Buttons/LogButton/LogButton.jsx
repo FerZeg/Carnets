@@ -1,5 +1,5 @@
 import { PropTypes } from 'prop-types';
-import './logButton.css';
+import './LogButton.css';
 LogButton.propTypes = {
     text: PropTypes.string.isRequired,
     children: PropTypes.element.isRequired,
