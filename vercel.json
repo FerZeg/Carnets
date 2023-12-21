@@ -2,7 +2,8 @@
     "builds": [
       {
         "src": "frontend/package.json",
-        "use": "@vercel/node"
+        "use": "@vercel/static-build",
+        "config": { "command": "npm run build" }
       },
       {
         "src": "src/index.js",
