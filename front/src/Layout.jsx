@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom";
 import { Toaster } from 'sonner'
 
 export default function Layout() {
+    console.log(import.meta.env.VITE_API_URL)
     let [ loading, setLoading ] = useState(true)
     const [ login, setLogin ] = useState({
       value: false,

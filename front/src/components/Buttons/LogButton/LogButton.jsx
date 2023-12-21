@@ -5,9 +5,20 @@ LogButton.propTypes = {
     children: PropTypes.element.isRequired,
 }
 
+const url = (() => {
+    const params = new URLSearchParams();
+    params.append('response_type', 'code')
+    params.append('client_id', 'l2bb03j7i3rwqvfys6nwm4f21uqyze')
+    params.append('redirect_uri', import.meta.env.VITE_API_URL + '/callback/twitch')
+    params.append('scope', 'user:read:follows user:read:subscriptions channel:read:redemptions channel:manage:redemptions channel:read:subscriptions channel:read:vips moderator:read:followers')
+    const newUrl = new URL('https://id.twitch.tv/oauth2/authorize');
+    newUrl.search = params.toString();
+    return newUrl.toString();
+})()
+
 export default function LogButton(props) {
     return (
-    <a href="https://id.twitch.tv/oauth2/authorize?response_type=code&client_id=l2bb03j7i3rwqvfys6nwm4f21uqyze&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fcallback%2Ftwitch&scope=user%3Aread%3Afollows+user%3Aread%3Asubscriptions+channel%3Aread%3Aredemptions+channel%3Amanage%3Aredemptions+channel%3Aread%3Asubscriptions+channel%3Aread%3Avips+moderator%3Aread%3Afollowers">
+    <a href={url}>
         <button className="login">
             {props.children}
             <span>{props.text}</span>

@@ -13,16 +13,15 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(express.static("public"))
-app.get("/", (req, res) => {
-	res.sendFile("index.html", {root: "./public/"})
-})
 app.use("/api", apiRouter)
 
-const server = app.listen(PORT, () => {
-	console.log(`Aplicación iniciada en el puerto ${PORT}!`)
-	connect()
-	//init()
+let server 
+if(process.env.NODE_ENV === "development"){
+	server = app.listen(PORT, () => {
+		console.log(`Aplicación iniciada en el puerto ${PORT}!`)
+		connect()
+	})
+}
 	
-}) 
 
 export default server
