@@ -1,9 +1,12 @@
 {
     "builds": [
       {
-        "src": "frontend/package.json",
+        "src": "front/package.json",
         "use": "@vercel/static-build",
-        "config": { "command": "npm run build" }
+        "config": { 
+            "command": "npm run build",
+            "output": "front/dist"
+         }
       },
       {
         "src": "src/index.js",
