@@ -1,7 +1,7 @@
 {
   "name": "carnet",
-  "module": "index.js",
-  "main": "index.js",
+  "module": "server.js",
+  "main": "server.js",
   "devDependencies": {
     "bun-types": "latest",
     "cross-env": "^7.0.3",
@@ -13,8 +13,8 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "dev": "bun --watch run index.js",
-    "node": "node --watch index.js",
+    "dev": "bun --watch run server.js",
+    "node": "node --watch server.js",
     "test": "set NODE_OPTIONS=--experimental-vm-modules && npx jest --verbose"
   },
   "type": "module",

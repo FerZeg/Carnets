@@ -11,7 +11,7 @@ export const twitchCallback = async (req, res) => {
 		const userExist = await User.getUserByTwitchId(data.id, {sanetized: false})
 		if(userExist) {
 			const tokenCreated = createAuthToken(userExist)
-			return res.redirect(`http://localhost:5173/success?token=${tokenCreated}`)
+			return res.redirect(`${process.env.REDIRECT_URL}/success?token=${tokenCreated}`)
 		}
 		const user = await User.createUser({
 			login: data.login, 
@@ -31,8 +31,9 @@ export const twitchCallback = async (req, res) => {
 			status: "active",
 		})
 		const tokenCreated = createAuthToken(user.data)
-		return res.redirect(`http://localhost:5173/success?token=${tokenCreated}`)
+		return res.redirect(`${process.env.REDIRECT_URL}/success?token=${tokenCreated}`)
 	} catch (error) {
-		return res.redirect("http://localhost:5173/error")
+		console.log(error)
+		return res.redirect(`${process.env.REDIRECT_URL}/error`)
 	}
 }
