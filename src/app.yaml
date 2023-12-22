@@ -1,0 +1,12 @@
+runtime: nodejs20
+
+env_variables:
+  NODE_ENV: "development"
+  CLIENT_ID: "l2bb03j7i3rwqvfys6nwm4f21uqyze"
+  TWITCH_SECRET: "fd7q6eyemb6zo9w34tjeeepk2kaz2u"
+  REDIRECT_URL: "http://api.fernandoestrada.dev/api/callback/twitch"
+  MONGO_URI: "mongodb+srv://ferestga8:At2xcBSUlaIJasNg@carnets.zipx6hp.mongodb.net/?retryWrites=true&w=majority"
+  MONGO_URI2: "mongodb://localhost:27017/carnets"
+  AccessToken: "wq32p8z0z7yh6u8dfaivuwggt47wi5"
+  RefreshToken: "habznnt49j6m5i4iujkvnuz9bgosz88sjppazzykp3p7zahx6p"
+  JWT_SECRET: "davidgleezmaricon"

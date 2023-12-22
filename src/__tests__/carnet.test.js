@@ -1,5 +1,5 @@
 import request from "supertest"
-import app from "../index.js" // Assuming you have an Express app defined in this file
+import app from "../server.js" // Assuming you have an Express app defined in this file
 import { disconnect } from "../conexion.js"
 import { refreshToken } from "../Services/twitchcontroller.js"
 
