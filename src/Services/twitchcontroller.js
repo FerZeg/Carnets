@@ -26,7 +26,7 @@ export const getOauthToken = async (code) => {
 			"client_secret": process.env.TWITCH_SECRET,
 			"code": code,
 			"grant_type": "authorization_code",
-			"redirect_uri": process.env.REDIRECT_URL})
+			"redirect_uri": process.env.SERVER_TWITCH_URL})
 	})
 	if(!response.ok) throw new Error(response.statusText)
 	const data = await response.json()
