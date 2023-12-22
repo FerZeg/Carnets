@@ -1,6 +1,7 @@
 {
   "name": "carnet",
   "module": "index.js",
+  "main": "index.js",
   "devDependencies": {
     "bun-types": "latest",
     "cross-env": "^7.0.3",

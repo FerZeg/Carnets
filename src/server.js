@@ -17,8 +17,7 @@ app.use("/api", apiRouter)
 
 connect()
 
-let server 
-server = app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
 	console.log(`Aplicación iniciada en el puerto ${PORT}!`)
 })
 	
