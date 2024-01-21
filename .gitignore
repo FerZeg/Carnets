@@ -10,6 +10,7 @@ lerna-debug.log*
 # Custom 
 src/public/
 
+app.yaml
 
 .vscode/*
 !.vscode/extensions.json

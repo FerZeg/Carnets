@@ -11,7 +11,6 @@ export async function createCarnet(req, res, next) {
 		const user = await User.getUserById(id, {sanetized: false})
 		const streamer = await UserModel.getUserByTwitchName(req.params.channelname, {sanetized: false})
 		if(id == streamer._id) {
-			console.log("Carnet creado del mismo usuario")
 			await CarnetModel.create(id, streamer._id)
 			return res.status(200).json("Creado correctamente")
 		}

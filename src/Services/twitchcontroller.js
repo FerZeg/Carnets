@@ -1,4 +1,4 @@
-import { BadRequestError } from "../Errors.js"
+import { BadRequestError, TokenExpiredError } from "../Errors.js"
 import UserModel from "../Models/UserModel.js"
 const TwitchApiURL = "https://api.twitch.tv/helix"
 import { updateReward } from "../Models/RewardModel.js"
@@ -33,7 +33,7 @@ export const getOauthToken = async (code) => {
 	return data
 }
 export const refreshToken = async (refresh_token) => {
-	const response = await fetch("https://id.twitch.tv/oauth2/token", {
+	return await fetch("https://id.twitch.tv/oauth2/token", {
 		method: "POST",
 		body: new URLSearchParams({
 			"client_id": process.env.CLIENT_ID,
@@ -41,8 +41,6 @@ export const refreshToken = async (refresh_token) => {
 			"refresh_token": refresh_token,
 			"grant_type": "refresh_token"})
 	})
-	const data = await response.json()
-	return data
 }
 export const isUserFollowingChannel = async (access_token, user, broadcaster_id) => {
 	const URL = TwitchApiURL + `/channels/followed?user_id=${user.twitch_id}&broadcaster_id=${broadcaster_id}`
@@ -53,36 +51,32 @@ export const isUserFollowingChannel = async (access_token, user, broadcaster_id)
 		}
 	})
 	if(!response.ok) {
-		if(response.status === 401) {
-			const resp = await tryRefreshTokens(access_token, user._id)
-			if(!resp) throw new Error("Error al actualizar tokens")
-			return isUserFollowingChannel(resp.access_token, user._id, broadcaster_id)
-		}
+		const resp = await tryRefreshTokens(access_token, user._id)
 	}
 	const data = await response.json()
-	return data.data.length > 0 ? true : false //Unknown Error some times on .length, sometimes twitch_id is null
+	if(data.data.length < 1) 
+		throw new BadRequestError("No sigues a este canal")
+	return data.data[0]
 }
+
 export const validateToken = async (access_token) => {
 	const URL = "https://id.twitch.tv/oauth2/validate"
-	const response = await fetch(URL, {
+	return await fetch(URL, {
 		headers: {
-			"Authorization": "OAuth " + access_token,
-			"Client-Id": process.env.CLIENT_ID
+			"Authorization": "OAuth " + access_token
 		}
 	})
-	const data = await response.json()
-	// returns 401 if failed.
-	return data
 }
 export const tryRefreshTokens = async (access_token, user_id) => {
 	const resp = await validateToken(access_token)
-	const finalId = user_id
 	if(!resp.ok) {
-		const user = await UserModel.getUserById(finalId, {sanetized: false})
-		console.log(user)
+		const user = await UserModel.getUserById(user_id, {sanetized: false})
 		const resp = await refreshToken(user.refresh_token)
-		if(!resp.ok) return false
-		UserModel.updateUser(user_id, {access_token: resp.access_token, refresh_token: resp.refresh_token})
+		console.log(user.refresh_token)
+		console.log("XDDDD", await resp.json())
+
+		if(!resp.ok) throw new TokenExpiredError("Error al refrescar el token")
+		await UserModel.updateUser(user_id, {access_token: resp.access_token, refresh_token: resp.refresh_token})
 		return resp
 	}
 }
