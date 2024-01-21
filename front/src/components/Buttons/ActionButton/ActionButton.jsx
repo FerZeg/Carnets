@@ -1,5 +1,5 @@
 import './ActionButton.css';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 
 const ActionButton = ({ children, className, ...otherProps }) => (
     <button {...otherProps} className={`ActionButton ${className}`}>
